@@ -1,30 +1,31 @@
 import { createGlobalStyle, css } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
-  @font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: local('Poppins Light'), local('Poppins-Light'),
-        url('/fonts/poppins-v12-latin-300.woff2') format('woff2');
-  }
-  @font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: local('Poppins Regular'), local('Poppins-Regular'),
-        url('/fonts/poppins-v12-latin-regular.woff2') format('woff2');
-  }
-  @font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: local('Poppins SemiBold'), local('Poppins-SemiBold'),
-        url('/fonts/poppins-v12-latin-600.woff2') format('woff2');
-  }
+/* montserrat-300 - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  src: local(''),
+       url('../public/fonts/montserrat-v15-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+}
+/* montserrat-regular - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+       url('../public/fonts/montserrat-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+
+}
+/* montserrat-600 - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  src: local(''),
+       url('../public/fonts/montserrat-v15-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+}
   * {
     margin: 0;
     padding: 0;
