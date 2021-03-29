@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react'
 import theme from 'styles/theme'
 import { renderWithTheme } from 'utils/tests/helpers'
 
-import GameCard from '.'
+import ServiceCard from '.'
 
 const props = {
   title: 'Population Zero',
@@ -11,9 +11,9 @@ const props = {
   price: 'R$ 235,00'
 }
 
-describe('<GameCard />', () => {
+describe('<ServiceCard />', () => {
   it('should render correctly', () => {
-    renderWithTheme(<GameCard {...props} />)
+    renderWithTheme(<ServiceCard {...props} />)
 
     expect(
       screen.getByRole('heading', { name: props.title })
@@ -32,7 +32,7 @@ describe('<GameCard />', () => {
   })
 
   it('should render price in label', () => {
-    renderWithTheme(<GameCard {...props} />)
+    renderWithTheme(<ServiceCard {...props} />)
 
     const price = screen.getByText('R$ 235,00')
 
@@ -41,7 +41,7 @@ describe('<GameCard />', () => {
   })
 
   it('should render a line-through in price when promotional', () => {
-    renderWithTheme(<GameCard {...props} promotionalPrice="R$ 15,00" />)
+    renderWithTheme(<ServiceCard {...props} promotionalPrice="R$ 15,00" />)
 
     expect(screen.getByText('R$ 235,00')).toHaveStyle({
       textDecoration: 'line-through'
@@ -53,14 +53,14 @@ describe('<GameCard />', () => {
   })
 
   it('should render a filled Favorite icon when favorite is true', () => {
-    renderWithTheme(<GameCard {...props} favorite />)
+    renderWithTheme(<ServiceCard {...props} favorite />)
 
     expect(screen.getByLabelText(/remove from wishlist/i)).toBeInTheDocument()
   })
 
   it('should call onFav method when favorite is clicked', () => {
     const onFav = jest.fn()
-    renderWithTheme(<GameCard {...props} favorite onFav={onFav} />)
+    renderWithTheme(<ServiceCard {...props} favorite onFav={onFav} />)
 
     fireEvent.click(screen.getAllByRole('button')[0])
 
@@ -69,7 +69,7 @@ describe('<GameCard />', () => {
 
   it('should render Ribbon', () => {
     renderWithTheme(
-      <GameCard
+      <ServiceCard
         {...props}
         ribbon="My Ribbon"
         ribbonColor="secondary"

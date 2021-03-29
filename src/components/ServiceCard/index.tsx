@@ -4,7 +4,7 @@ import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
 import Button from 'components/Button'
 import * as S from './styles'
 
-export type GameCardProps = {
+export type ServiceCardProps = {
   title: string
   developer: string
   img: string
@@ -17,7 +17,7 @@ export type GameCardProps = {
   onFav?: () => void
 }
 
-const GameCard = ({
+const ServiceCard = ({
   title,
   developer,
   img,
@@ -28,7 +28,7 @@ const GameCard = ({
   ribbonColor = 'primary',
   ribbonSize = 'small',
   onFav
-}: GameCardProps) => (
+}: ServiceCardProps) => (
   <S.Wrapper>
     {!!ribbon && (
       <Ribbon color={ribbonColor} size={ribbonSize}>
@@ -61,4 +61,4 @@ const GameCard = ({
   </S.Wrapper>
 )
 
-export default GameCard
+export default ServiceCard
