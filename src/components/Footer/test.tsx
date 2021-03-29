@@ -8,11 +8,11 @@ describe('<Footer />', () => {
     const { container } = renderWithTheme(<Footer />)
 
     expect(
-      screen.getByRole('heading', { name: /entre em contato/i })
+      screen.getByRole('heading', { name: /contato/i })
     ).toBeInTheDocument()
 
     expect(
-      screen.getByRole('heading', { name: /nos siga/i })
+      screen.getByRole('heading', { name: /redes sociais/i })
     ).toBeInTheDocument()
 
     expect(screen.getByRole('heading', { name: /links/i })).toBeInTheDocument()

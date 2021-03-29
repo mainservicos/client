@@ -10,7 +10,7 @@ const Footer = () => (
     <S.Content>
       <S.Column>
         <Heading color="black" size="small" lineBottom lineColor="secondary">
-          Entre em contato
+          Contato
         </Heading>
 
         <a href="mailto:sac@wongames.com">sac@mainservicos.com.br</a>
@@ -18,7 +18,7 @@ const Footer = () => (
 
       <S.Column>
         <Heading color="black" lineColor="secondary" lineBottom size="small">
-          Nos siga
+          Redes Sociais
         </Heading>
 
         <nav aria-labelledby="social media">
