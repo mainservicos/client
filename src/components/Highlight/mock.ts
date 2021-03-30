@@ -1,7 +1,7 @@
 export default {
-  title: 'Read Dead is back!',
-  subtitle: 'Come see John’s new adventures',
-  backgroundImage: '/img/red-dead-img.jpg',
-  buttonLabel: 'Buy now',
+  title: 'Destaque',
+  subtitle: 'Destaque ',
+  backgroundImage: 'https://source.unsplash.com/user/mercantile',
+  buttonLabel: 'Saber mais',
   buttonLink: '/games/rdr2'
 }
