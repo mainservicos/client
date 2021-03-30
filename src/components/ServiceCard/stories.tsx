@@ -1,10 +1,10 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
 
-import GameCard, { GameCardProps } from '.'
+import ServiceCard, { ServiceCardProps } from '.'
 
 export default {
-  title: 'GameCard',
-  component: GameCard,
+  title: 'ServiceCard',
+  component: ServiceCard,
   args: {
     title: 'Population Zero',
     developer: 'Rockstar Games',
@@ -18,15 +18,15 @@ export default {
   }
 } as Meta
 
-export const Default: Story<GameCardProps> = (args) => (
+export const Default: Story<ServiceCardProps> = (args) => (
   <div style={{ width: '30rem' }}>
-    <GameCard {...args} />
+    <ServiceCard {...args} />
   </div>
 )
 
-export const WithRibbon: Story<GameCardProps> = (args) => (
+export const WithRibbon: Story<ServiceCardProps> = (args) => (
   <div style={{ width: '30rem' }}>
-    <GameCard {...args} />
+    <ServiceCard {...args} />
   </div>
 )
 

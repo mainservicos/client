@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
-import { GameCardSliderProps } from '.'
+import { ServiceCardSliderProps } from '.'
 
-type WrapperProps = Pick<GameCardSliderProps, 'color'>
+type WrapperProps = Pick<ServiceCardSliderProps, 'color'>
 
 export const Wrapper = styled.section<WrapperProps>`
   ${({ theme, color }) => css`
