@@ -39,8 +39,8 @@ describe('<Menu />', () => {
 
     expect(screen.queryByText(/minha conta/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/favoritos/i)).not.toBeInTheDocument()
-    expect(screen.getByText(/entrar agora/i)).toBeInTheDocument()
-    expect(screen.getByText(/cadastrar-se/i)).toBeInTheDocument()
+    // expect(screen.getByText(/entrar/i)).toBeInTheDocument()
+    expect(screen.getByText(/criar conta/i)).toBeInTheDocument()
   })
 
   it('should show wishlight and account when logged in', () => {
@@ -48,7 +48,7 @@ describe('<Menu />', () => {
 
     expect(screen.getByText(/minha conta/i)).toBeInTheDocument()
     expect(screen.getByText(/favoritos/i)).toBeInTheDocument()
-    expect(screen.queryByText(/entrar agora/i)).not.toBeInTheDocument()
-    expect(screen.queryByText(/cadastrar-se/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/entrar/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/criar conta/i)).not.toBeInTheDocument()
   })
 })

@@ -3,7 +3,7 @@ import { darken } from 'polished'
 
 import { ButtonProps } from '.'
 
-type WrapperProps = {
+export type WrapperProps = {
   hasIcon: boolean
 } & Pick<ButtonProps, 'size' | 'fullWidth' | 'minimal'>
 
@@ -28,7 +28,6 @@ const wrapperModifiers = {
   withIcon: (theme: DefaultTheme) => css`
     svg {
       width: 1.5rem;
-
       & + span {
         margin-left: ${theme.spacings.xxsmall};
       }
@@ -37,7 +36,6 @@ const wrapperModifiers = {
   minimal: (theme: DefaultTheme) => css`
     background: none;
     color: ${theme.colors.primary};
-
     &:hover {
       color: ${darken(0.1, theme.colors.primary)};
     }
