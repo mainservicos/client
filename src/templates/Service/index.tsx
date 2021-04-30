@@ -7,20 +7,17 @@ import TextContent from 'components/TextContent'
 import * as S from './styles'
 
 export type ServiceTemplateProps = {
-  cover: string
   serviceInfo: ServiceInfoProps
   gallery?: GalleryImageProps[]
   description: string
 }
 
 const Service = ({
-  cover,
   serviceInfo,
   gallery,
   description
 }: ServiceTemplateProps) => (
   <Base>
-    <S.Cover src={cover} role="image" aria-label="cover" />
     <S.Main>
       <S.SectionServiceInfo>
         <ServiceInfo {...serviceInfo} />
