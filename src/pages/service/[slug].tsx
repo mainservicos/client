@@ -9,7 +9,7 @@ export default function Index(props: ServiceTemplateProps) {
 // gerar em build time (/Service/bla, /bame/foo ...)
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { slug: 'cyberpunk-2077' } }],
+    paths: [{ params: { slug: 'teste' } }],
     fallback: false
   }
 }
