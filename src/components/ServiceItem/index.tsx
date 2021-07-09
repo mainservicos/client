@@ -1,8 +1,23 @@
 import * as S from './styles'
 
-const ServiceItem = () => (
+export type ServiceItemProps = {
+  img: string
+  title: string
+  price: string
+}
+
+const ServiceItem = ({ img, title, price }: ServiceItemProps) => (
   <S.Wrapper>
-    <h1>ServiceItem</h1>
+    <S.ServiceContent>
+      <S.ImageBox>
+        <img src={img} alt={title} />
+      </S.ImageBox>
+
+      <S.Content>
+        <S.Title>{title}</S.Title>
+        <S.Price>{price}</S.Price>
+      </S.Content>
+    </S.ServiceContent>
   </S.Wrapper>
 )
 
