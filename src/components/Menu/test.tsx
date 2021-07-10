@@ -44,9 +44,6 @@ describe('<Menu />', () => {
 
   it('should show wishlight and account when logged in', () => {
     renderWithTheme(<Menu username="will" />)
-
-    expect(screen.getByText(/minha conta/i)).toBeInTheDocument()
-
     expect(screen.queryByText(/entrar/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/criar conta/i)).not.toBeInTheDocument()
   })
