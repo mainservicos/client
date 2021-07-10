@@ -1,72 +1,68 @@
 export default [
   {
-    title: 'Price',
+    title: 'Preço',
     name: 'price',
     type: 'checkbox',
     fields: [
       {
-        label: 'Under $50',
+        label: 'Menos de R$50',
         name: 'under-50'
       },
       {
-        label: 'Under $100',
+        label: 'Menos de  R$100',
         name: 'under-100'
       },
       {
-        label: 'Under $150',
+        label: 'Menos de R$150',
         name: 'under-150'
       },
       {
-        label: 'Under $200',
+        label: 'Menos de $200',
         name: 'under-200'
       },
       {
-        label: 'Free',
+        label: 'Gratis',
         name: 'free'
-      },
-      {
-        label: 'Discounted',
-        name: 'discounted'
       }
     ]
   },
   {
-    title: 'Sort by',
+    title: 'Ordenar por ',
     name: 'sort_by',
     type: 'radio',
     fields: [
       {
-        label: 'High to low',
+        label: 'Maior preço',
         name: 'high-to-low'
       },
       {
-        label: 'Low to high',
+        label: 'Menor preço',
         name: 'low-to-high'
       }
     ]
   },
+  // {
+  //   title: 'System',
+  //   name: 'system',
+  //   type: 'checkbox',
+  //   fields: [
+  //     {
+  //       label: 'Windows',
+  //       name: 'windows'
+  //     },
+  //     {
+  //       label: 'Linux',
+  //       name: 'linux'
+  //     },
+  //     {
+  //       label: 'MacOS',
+  //       name: 'macos'
+  //     }
+  //   ]
+  // },
   {
-    title: 'System',
-    name: 'system',
-    type: 'checkbox',
-    fields: [
-      {
-        label: 'Windows',
-        name: 'windows'
-      },
-      {
-        label: 'Linux',
-        name: 'linux'
-      },
-      {
-        label: 'MacOS',
-        name: 'macos'
-      }
-    ]
-  },
-  {
-    title: 'Genre',
-    name: 'genre',
+    title: 'Categoria',
+    name: 'categoria',
     type: 'checkbox',
     fields: [
       {

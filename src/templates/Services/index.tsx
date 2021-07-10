@@ -12,7 +12,7 @@ export type ServicesTemplateProps = {
   filterItems: ItemProps[]
 }
 
-const GamesTemplate = ({
+const ServicesTemplate = ({
   filterItems,
   services = []
 }: ServicesTemplateProps) => {
@@ -46,4 +46,4 @@ const GamesTemplate = ({
   )
 }
 
-export default GamesTemplate
+export default ServicesTemplate

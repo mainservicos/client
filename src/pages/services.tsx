@@ -1,15 +1,15 @@
-import ServiceTemplate, { ServicesTemplateProps } from 'templates/Services'
+import ServicesTemplate, { ServicesTemplateProps } from 'templates/Services'
 import filterItemsMock from 'components/ExploreSidebar/mock'
 import servicesMock from 'components/ServiceCardSlider/mock'
 
 export default function ServicesPage(props: ServicesTemplateProps) {
-  return <ServiceTemplate {...props} />
+  return <ServicesTemplate {...props} />
 }
 
 export async function getServerSideProps() {
   return {
     props: {
-      games: servicesMock,
+      services: servicesMock,
       filterItems: filterItemsMock
     }
   }

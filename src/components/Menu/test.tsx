@@ -10,7 +10,6 @@ describe('<Menu />', () => {
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
     expect(screen.getByRole('img', { name: /won games/i })).toBeInTheDocument()
     expect(screen.getByLabelText(/search/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/open shopping cart/i)).toBeInTheDocument()
   })
 
   it('should handle the open/close mobile menu', () => {
@@ -38,7 +37,7 @@ describe('<Menu />', () => {
     renderWithTheme(<Menu />)
 
     expect(screen.queryByText(/minha conta/i)).not.toBeInTheDocument()
-    expect(screen.queryByText(/favoritos/i)).not.toBeInTheDocument()
+
     // expect(screen.getByText(/entrar/i)).toBeInTheDocument()
     expect(screen.getByText(/criar conta/i)).toBeInTheDocument()
   })
@@ -47,7 +46,7 @@ describe('<Menu />', () => {
     renderWithTheme(<Menu username="will" />)
 
     expect(screen.getByText(/minha conta/i)).toBeInTheDocument()
-    expect(screen.getByText(/favoritos/i)).toBeInTheDocument()
+
     expect(screen.queryByText(/entrar/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/criar conta/i)).not.toBeInTheDocument()
   })
