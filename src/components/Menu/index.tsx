@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Menu2 as MenuIcon } from '@styled-icons/remix-line/Menu2'
-import { ShoppingCart as ShoppingCartIcon } from '@styled-icons/material-outlined/ShoppingCart'
+// import { ShoppingCart as ShoppingCartIcon } from '@styled-icons/material-outlined/ShoppingCart'
 import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
 import { Close as CloseIcon } from '@styled-icons/material-outlined/Close'
 
@@ -30,16 +30,16 @@ const Menu = ({ username }: MenuProps) => {
       <MediaMatch greaterThan="medium">
         <S.MenuNav>
           <S.MenuLink href="/">Home</S.MenuLink>
-          <S.MenuLink href="#">Explorar</S.MenuLink>
+          <S.MenuLink href="/services">Explorar</S.MenuLink>
         </S.MenuNav>
       </MediaMatch>
       <S.MenuGroup>
         <S.IconWrapper>
           <SearchIcon aria-label="Search" />
         </S.IconWrapper>
-        <S.IconWrapper>
+        {/* <S.IconWrapper>
           <ShoppingCartIcon aria-label="Open Shopping Cart" />
-        </S.IconWrapper>
+        </S.IconWrapper> */}
         {!username && (
           <Link href="/sign-in" passHref>
             <Button as="a">Entrar</Button>
@@ -50,13 +50,13 @@ const Menu = ({ username }: MenuProps) => {
       <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
         <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
         <S.MenuNav>
-          <S.MenuLink href="#">Home</S.MenuLink>
-          <S.MenuLink href="#">Explorar</S.MenuLink>
+          <S.MenuLink href="/">Home</S.MenuLink>
+          <S.MenuLink href="/services">Explorar</S.MenuLink>
 
           {!!username && (
             <>
               <S.MenuLink href="#">Minha conta</S.MenuLink>
-              <S.MenuLink href="#">Favoritos</S.MenuLink>
+              {/* <S.MenuLink href="#">Favoritos</S.MenuLink> */}
             </>
           )}
         </S.MenuNav>
