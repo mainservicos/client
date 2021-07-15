@@ -1,10 +1,11 @@
 import { Favorite, FavoriteBorder, East } from '@styled-icons/material-outlined'
-
+import Link from 'next/link'
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
 import Button from 'components/Button'
 import * as S from './styles'
 
 export type ServiceCardProps = {
+  slug: string
   title: string
   developer: string
   img: string
@@ -18,6 +19,7 @@ export type ServiceCardProps = {
 }
 
 const ServiceCard = ({
+  slug,
   title,
   developer,
   img,
@@ -35,14 +37,18 @@ const ServiceCard = ({
         {ribbon}
       </Ribbon>
     )}
-    <S.ImageBox>
-      <img src={img} alt={title} />
-    </S.ImageBox>
+    <Link href={`game/${slug}`} passHref>
+      <S.ImageBox>
+        <img src={img} alt={title} />
+      </S.ImageBox>
+    </Link>
     <S.Content>
-      <S.Info>
-        <S.Title>{title}</S.Title>
-        <S.Developer>{developer}</S.Developer>
-      </S.Info>
+      <Link href={`service/${slug}`} passHref>
+        <S.Info>
+          <S.Title>{title}</S.Title>
+          <S.Developer>{developer}</S.Developer>
+        </S.Info>
+      </Link>
       <S.FavButton onClick={onFav} role="button">
         {favorite ? (
           <Favorite aria-label="Remove from Wishlist" />
