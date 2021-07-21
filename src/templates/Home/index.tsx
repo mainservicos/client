@@ -2,7 +2,7 @@ import Base from 'templates/Base'
 
 import { BannerProps } from 'components/Banner'
 import { ServiceCardProps } from 'components/ServiceCard'
-import { HighlightProps } from 'components/Highlight'
+// import { HighlightProps } from 'components/Highlight'
 
 import { Container } from 'components/Container'
 import BannerSlider from 'components/BannerSlider'
@@ -13,23 +13,23 @@ import * as S from './styles'
 
 export type HomeTemplateProps = {
   banners: BannerProps[]
-  newGames: ServiceCardProps[]
-  mostPopularHighlight: HighlightProps
-  mostPopularGames: ServiceCardProps[]
-  upcommingGames: ServiceCardProps[]
-  upcommingHighligth: HighlightProps
-  upcommingMoreGames: ServiceCardProps[]
+  newServices: ServiceCardProps[]
+  // mostPopularHighlight: HighlightProps
+  // mostPopularGames: ServiceCardProps[]
+  // upcommingGames: ServiceCardProps[]
+  // upcommingHighligth: HighlightProps
+  // upcommingMoreGames: ServiceCardProps[]
 }
 
 const Home = ({
   banners,
-  newGames,
-  mostPopularHighlight,
-  mostPopularGames,
-  upcommingGames,
-  upcommingHighligth,
-  upcommingMoreGames
-}: HomeTemplateProps) => (
+  newServices
+}: // mostPopularHighlight,
+// mostPopularGames
+// upcommingGames,
+// upcommingHighligth,
+// upcommingMoreGames
+HomeTemplateProps) => (
   <Base>
     <Container>
       <S.SectionBanner>
@@ -38,19 +38,19 @@ const Home = ({
     </Container>
 
     <S.SectionNews>
-      <Showcase title="Novidades" games={newGames} color="black" />
+      <Showcase title="Novidades" games={newServices} color="black" />
     </S.SectionNews>
 
-    <Showcase
+    {/* <Showcase
       title="Mais buscados"
       games={mostPopularGames}
       highlight={mostPopularHighlight}
-    />
-
+    /> */}
+    {/*
     <S.SectionUpcoming>
       <Showcase title="Seção 3" games={upcommingGames} />
       <Showcase highlight={upcommingHighligth} games={upcommingMoreGames} />
-    </S.SectionUpcoming>
+    </S.SectionUpcoming> */}
   </Base>
 )
 
