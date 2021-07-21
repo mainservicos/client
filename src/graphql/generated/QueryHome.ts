@@ -48,6 +48,7 @@ export interface QueryHome_newServices_user {
 
 export interface QueryHome_newServices {
   __typename: "Service";
+  id: string;
   name: string;
   slug: string | null;
   cover: QueryHome_newServices_cover | null;

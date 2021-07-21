@@ -30,6 +30,7 @@ export interface QueryServiceBySlug_services_categories {
 
 export interface QueryServiceBySlug_services {
   __typename: "Service";
+  id: string;
   name: string;
   short_description: string | null;
   description: string | null;

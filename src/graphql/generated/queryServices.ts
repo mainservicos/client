@@ -19,6 +19,7 @@ export interface queryServices_services_user {
 
 export interface queryServices_services {
   __typename: "Service";
+  id: string;
   name: string;
   slug: string | null;
   cover: queryServices_services_cover | null;
@@ -26,8 +27,19 @@ export interface queryServices_services {
   price: number | null;
 }
 
+export interface queryServices_servicesConnection_values {
+  __typename: "Service";
+  id: string;
+}
+
+export interface queryServices_servicesConnection {
+  __typename: "ServiceConnection";
+  values: (queryServices_servicesConnection_values | null)[] | null;
+}
+
 export interface queryServices {
   services: queryServices_services[];
+  servicesConnection: queryServices_servicesConnection | null;
 }
 
 export interface queryServicesVariables {

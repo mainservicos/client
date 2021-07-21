@@ -19,6 +19,7 @@ export interface ServiceFragment_user {
 
 export interface ServiceFragment {
   __typename: "Service";
+  id: string;
   name: string;
   slug: string | null;
   cover: ServiceFragment_cover | null;
