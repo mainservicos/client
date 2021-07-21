@@ -50,7 +50,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     QueryServiceBySlugVariables
   >({
     query: QUERY_SERVICES_BY_SLUG,
-    variables: { slug: `${params?.slug}` }
+    variables: { slug: `${params?.slug}` },
+    fetchPolicy: 'no-cache'
   })
 
   if (!data.services.length) {

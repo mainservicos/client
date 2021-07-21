@@ -14,6 +14,7 @@ import * as S from './styles'
 export type HomeTemplateProps = {
   banners: BannerProps[]
   newServices: ServiceCardProps[]
+  otherServices: ServiceCardProps[]
   // mostPopularHighlight: HighlightProps
   // mostPopularGames: ServiceCardProps[]
   // upcommingGames: ServiceCardProps[]
@@ -23,7 +24,8 @@ export type HomeTemplateProps = {
 
 const Home = ({
   banners,
-  newServices
+  newServices,
+  otherServices
 }: // mostPopularHighlight,
 // mostPopularGames
 // upcommingGames,
@@ -38,14 +40,10 @@ HomeTemplateProps) => (
     </Container>
 
     <S.SectionNews>
-      <Showcase title="Novidades" games={newServices} color="black" />
+      <Showcase title="Novidades" services={newServices} color="black" />
     </S.SectionNews>
 
-    {/* <Showcase
-      title="Mais buscados"
-      games={mostPopularGames}
-      highlight={mostPopularHighlight}
-    /> */}
+    <Showcase title="Mais" services={otherServices} />
     {/*
     <S.SectionUpcoming>
       <Showcase title="Seção 3" games={upcommingGames} />

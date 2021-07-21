@@ -56,7 +56,32 @@ export interface QueryHome_newServices {
   price: number | null;
 }
 
+export interface QueryHome_otherServices_cover {
+  __typename: "UploadFile";
+  url: string;
+}
+
+export interface QueryHome_otherServices_user {
+  __typename: "UsersPermissionsUser";
+  name: string;
+}
+
+export interface QueryHome_otherServices {
+  __typename: "Service";
+  id: string;
+  name: string;
+  slug: string | null;
+  cover: QueryHome_otherServices_cover | null;
+  user: QueryHome_otherServices_user | null;
+  price: number | null;
+}
+
 export interface QueryHome {
   banners: QueryHome_banners[];
   newServices: QueryHome_newServices[];
+  otherServices: QueryHome_otherServices[];
+}
+
+export interface QueryHomeVariables {
+  date: any;
 }

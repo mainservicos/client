@@ -2,8 +2,10 @@ import Home, { HomeTemplateProps } from 'templates/Home'
 // import servicesMock from 'components/ServiceCardSlider/mock'
 // import highlightMock from 'components/Highlight/mock'
 import { initializeApollo } from 'utils/apollo'
-import { QueryHome } from 'graphql/generated/QueryHome'
+import { QueryHome, QueryHomeVariables } from 'graphql/generated/QueryHome'
 import { QUERY_HOME } from 'graphql/queries/home'
+
+const TODAY = new Date().toISOString().slice(0, 10)
 
 // ATENÇÃO:
 // os métodos getStaticProps/getServerSideProps SÓ FUNCIONAM EM PAGES
@@ -25,8 +27,12 @@ export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
   const {
-    data: { banners, newServices }
-  } = await apolloClient.query<QueryHome>({ query: QUERY_HOME })
+    data: { banners, newServices, otherServices }
+  } = await apolloClient.query<QueryHome, QueryHomeVariables>({
+    query: QUERY_HOME,
+    variables: { date: TODAY.slice(0, 24) },
+    fetchPolicy: 'no-cache' // garantir sempre dado novo na geração do estático!
+  })
 
   return {
     props: {
@@ -44,6 +50,14 @@ export async function getStaticProps() {
         })
       })),
       newServices: newServices.map((service) => ({
+        title: service.name,
+        slug: service.slug,
+        user: service.user!.name,
+        img: `http://localhost:1337${service.cover?.url}`,
+        price: service.price
+      })),
+
+      otherServices: otherServices.map((service) => ({
         title: service.name,
         slug: service.slug,
         user: service.user!.name,

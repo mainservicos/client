@@ -4,16 +4,20 @@ import { ServiceFragment } from 'graphql/fragments/service'
 
 // GET_HOME | QUERY_HOME
 export const QUERY_HOME = gql`
-  query QueryHome {
+  query QueryHome($date: Date!) {
     banners {
       ...BannerFragment
     }
 
     newServices: services(
-      where: { created_at: "2021-07-13T03:03:44.138Z" }
-      sort: "created_at:desc"
+      where: { released_at: $date }
+      sort: "released_at:desc"
       limit: 8
     ) {
+      ...ServiceFragment
+    }
+
+    otherServices: services(sort: "released_at:desc", limit: 8) {
       ...ServiceFragment
     }
   }
