@@ -1,7 +1,4 @@
-import {
-  AddShoppingCart,
-  FavoriteBorder
-} from '@styled-icons/material-outlined'
+import { ContactPhone } from '@styled-icons/material-outlined'
 
 import Button from 'components/Button'
 import Heading from 'components/Heading'
@@ -9,10 +6,12 @@ import Ribbon from 'components/Ribbon'
 
 import * as S from './styles'
 
+import formatPrice from 'utils/format-price'
+
 export type ServiceInfoProps = {
   title: string
   description: string
-  price: string
+  price: number
 }
 
 const ServiceInfo = ({ title, description, price }: ServiceInfoProps) => (
@@ -21,16 +20,13 @@ const ServiceInfo = ({ title, description, price }: ServiceInfoProps) => (
       {title}
     </Heading>
 
-    <Ribbon color="secondary">{`$${price}`}</Ribbon>
+    <Ribbon color="secondary">{formatPrice(price)}</Ribbon>
 
     <S.Description>{description}</S.Description>
 
     <S.ButtonsWrapper>
-      <Button icon={<AddShoppingCart />} size="large">
-        Add to cart
-      </Button>
-      <Button icon={<FavoriteBorder />} size="large" minimal>
-        Wishlist
+      <Button icon={<ContactPhone />} size="large" minimal>
+        Contato do anúncio
       </Button>
     </S.ButtonsWrapper>
   </S.Wrapper>

@@ -218,6 +218,133 @@ type deleteAddressPayload {
   address: Address
 }
 
+type Banner {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  image: UploadFile
+  title: String!
+  subtitle: String!
+  button: ComponentUserButton
+  ribbon: ComponentUserRibbon
+  published_at: DateTime
+}
+
+type BannerConnection {
+  values: [Banner]
+  groupBy: BannerGroupBy
+  aggregate: BannerAggregator
+}
+
+type BannerAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type BannerGroupBy {
+  id: [BannerConnectionId]
+  created_at: [BannerConnectionCreated_at]
+  updated_at: [BannerConnectionUpdated_at]
+  image: [BannerConnectionImage]
+  title: [BannerConnectionTitle]
+  subtitle: [BannerConnectionSubtitle]
+  button: [BannerConnectionButton]
+  ribbon: [BannerConnectionRibbon]
+  published_at: [BannerConnectionPublished_at]
+}
+
+type BannerConnectionId {
+  key: ID
+  connection: BannerConnection
+}
+
+type BannerConnectionCreated_at {
+  key: DateTime
+  connection: BannerConnection
+}
+
+type BannerConnectionUpdated_at {
+  key: DateTime
+  connection: BannerConnection
+}
+
+type BannerConnectionImage {
+  key: ID
+  connection: BannerConnection
+}
+
+type BannerConnectionTitle {
+  key: String
+  connection: BannerConnection
+}
+
+type BannerConnectionSubtitle {
+  key: String
+  connection: BannerConnection
+}
+
+type BannerConnectionButton {
+  key: ID
+  connection: BannerConnection
+}
+
+type BannerConnectionRibbon {
+  key: ID
+  connection: BannerConnection
+}
+
+type BannerConnectionPublished_at {
+  key: DateTime
+  connection: BannerConnection
+}
+
+input BannerInput {
+  image: ID
+  title: String!
+  subtitle: String!
+  button: ComponentUserButtonInput
+  ribbon: ComponentUserRibbonInput
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editBannerInput {
+  image: ID
+  title: String
+  subtitle: String
+  button: editComponentUserButtonInput
+  ribbon: editComponentUserRibbonInput
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createBannerInput {
+  data: BannerInput
+}
+
+type createBannerPayload {
+  banner: Banner
+}
+
+input updateBannerInput {
+  where: InputID
+  data: editBannerInput
+}
+
+type updateBannerPayload {
+  banner: Banner
+}
+
+input deleteBannerInput {
+  where: InputID
+}
+
+type deleteBannerPayload {
+  banner: Banner
+}
+
 type Category {
   id: ID!
   created_at: DateTime!
@@ -1103,6 +1230,53 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
+type ComponentUserButton {
+  id: ID!
+  label: String
+  link: String!
+}
+
+input ComponentUserButtonInput {
+  label: String
+  link: String!
+}
+
+input editComponentUserButtonInput {
+  id: ID
+  label: String
+  link: String
+}
+
+enum ENUM_COMPONENTUSERRIBBON_COLOR {
+  primary
+  secondary
+}
+
+enum ENUM_COMPONENTUSERRIBBON_SIZE {
+  small
+  normal
+}
+
+type ComponentUserRibbon {
+  id: ID!
+  text: String
+  color: ENUM_COMPONENTUSERRIBBON_COLOR
+  size: ENUM_COMPONENTUSERRIBBON_SIZE
+}
+
+input ComponentUserRibbonInput {
+  text: String
+  color: ENUM_COMPONENTUSERRIBBON_COLOR
+  size: ENUM_COMPONENTUSERRIBBON_SIZE
+}
+
+input editComponentUserRibbonInput {
+  id: ID
+  text: String
+  color: ENUM_COMPONENTUSERRIBBON_COLOR
+  size: ENUM_COMPONENTUSERRIBBON_SIZE
+}
+
 enum ENUM_COMPONENTUSERSOCIALLINKS_TITLE {
   Facebook
   Linkedin
@@ -1127,7 +1301,7 @@ input editComponentUserSocialLinkInput {
   title: ENUM_COMPONENTUSERSOCIALLINKS_TITLE
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Address | AddressConnection | AddressAggregator | AddressGroupBy | AddressConnectionId | AddressConnectionCreated_at | AddressConnectionUpdated_at | AddressConnectionName | AddressConnectionLogradouro | AddressConnectionCep | AddressConnectionBairro | AddressConnectionCidade | AddressConnectionUf | AddressConnectionNumero | AddressConnectionPublished_at | createAddressPayload | updateAddressPayload | deleteAddressPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | PhoneNumber | PhoneNumberConnection | PhoneNumberAggregator | PhoneNumberGroupBy | PhoneNumberConnectionId | PhoneNumberConnectionCreated_at | PhoneNumberConnectionUpdated_at | PhoneNumberConnectionPhone | PhoneNumberConnectionIsWhatsApp | PhoneNumberConnectionIsVisible | PhoneNumberConnectionUser | PhoneNumberConnectionPublished_at | createPhoneNumberPayload | updatePhoneNumberPayload | deletePhoneNumberPayload | Service | ServiceConnection | ServiceAggregator | ServiceAggregatorSum | ServiceAggregatorAvg | ServiceAggregatorMin | ServiceAggregatorMax | ServiceGroupBy | ServiceConnectionId | ServiceConnectionCreated_at | ServiceConnectionUpdated_at | ServiceConnectionName | ServiceConnectionShort_description | ServiceConnectionDescription | ServiceConnectionPrice | ServiceConnectionSlug | ServiceConnectionCover | ServiceConnectionUser | ServiceConnectionAddress | ServiceConnectionPublished_at | createServicePayload | updateServicePayload | deleteServicePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionPhoto | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionDescription | createUserPayload | updateUserPayload | deleteUserPayload | ComponentUserSocialLinks
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Address | AddressConnection | AddressAggregator | AddressGroupBy | AddressConnectionId | AddressConnectionCreated_at | AddressConnectionUpdated_at | AddressConnectionName | AddressConnectionLogradouro | AddressConnectionCep | AddressConnectionBairro | AddressConnectionCidade | AddressConnectionUf | AddressConnectionNumero | AddressConnectionPublished_at | createAddressPayload | updateAddressPayload | deleteAddressPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionRibbon | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | PhoneNumber | PhoneNumberConnection | PhoneNumberAggregator | PhoneNumberGroupBy | PhoneNumberConnectionId | PhoneNumberConnectionCreated_at | PhoneNumberConnectionUpdated_at | PhoneNumberConnectionPhone | PhoneNumberConnectionIsWhatsApp | PhoneNumberConnectionIsVisible | PhoneNumberConnectionUser | PhoneNumberConnectionPublished_at | createPhoneNumberPayload | updatePhoneNumberPayload | deletePhoneNumberPayload | Service | ServiceConnection | ServiceAggregator | ServiceAggregatorSum | ServiceAggregatorAvg | ServiceAggregatorMin | ServiceAggregatorMax | ServiceGroupBy | ServiceConnectionId | ServiceConnectionCreated_at | ServiceConnectionUpdated_at | ServiceConnectionName | ServiceConnectionShort_description | ServiceConnectionDescription | ServiceConnectionPrice | ServiceConnectionSlug | ServiceConnectionCover | ServiceConnectionUser | ServiceConnectionAddress | ServiceConnectionPublished_at | createServicePayload | updateServicePayload | deleteServicePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionPhoto | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionDescription | createUserPayload | updateUserPayload | deleteUserPayload | ComponentUserButton | ComponentUserRibbon | ComponentUserSocialLinks
 
 input InputID {
   id: ID!
@@ -1149,6 +1323,9 @@ type Query {
   address(id: ID!, publicationState: PublicationState): Address
   addresses(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Address!]!
   addressesConnection(sort: String, limit: Int, start: Int, where: JSON): AddressConnection
+  banner(id: ID!, publicationState: PublicationState): Banner
+  banners(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Banner!]!
+  bannersConnection(sort: String, limit: Int, start: Int, where: JSON): BannerConnection
   category(id: ID!, publicationState: PublicationState): Category
   categories(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Category!]!
   categoriesConnection(sort: String, limit: Int, start: Int, where: JSON): CategoryConnection
@@ -1174,6 +1351,9 @@ type Mutation {
   createAddress(input: createAddressInput): createAddressPayload
   updateAddress(input: updateAddressInput): updateAddressPayload
   deleteAddress(input: deleteAddressInput): deleteAddressPayload
+  createBanner(input: createBannerInput): createBannerPayload
+  updateBanner(input: updateBannerInput): updateBannerPayload
+  deleteBanner(input: deleteBannerInput): deleteBannerPayload
   createCategory(input: createCategoryInput): createCategoryPayload
   updateCategory(input: updateCategoryInput): updateCategoryPayload
   deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
