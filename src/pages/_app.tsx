@@ -15,7 +15,7 @@ function App({ Component, pageProps }: AppProps) {
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
           <Head>
-            <title>Won Games</title>
+            <title>Maìn Serviços - Moda e Costura </title>
             <link rel="shortcut icon" href="/img/icon-512.png" />
             <link rel="apple-touch-icon" href="/img/icon-512.png" />
             <link rel="manifest" href="/manifest.json" />
