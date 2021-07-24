@@ -20,13 +20,14 @@ const Auth = ({ title, children }: AuthProps) => (
         </Link>
 
         <div>
-          <Heading size="huge">All your favorite games in one place</Heading>
+          <Heading size="huge">Encontre aqui o que você precisa!</Heading>
           <S.Subtitle>
-            <strong>WON</strong> is the best and most complete gaming platform.
+            <strong>Maìn</strong> é a melhor plataforma para buscar e publicar
+            serviços.
           </S.Subtitle>
         </div>
 
-        <S.Footer>Won Games 2020 © Todos os Direitos Reservados</S.Footer>
+        <S.Footer>Maìn 2020 © Todos os Direitos Reservados</S.Footer>
       </S.BannerContent>
     </S.BannerBlock>
 

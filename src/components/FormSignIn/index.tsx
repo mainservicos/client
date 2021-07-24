@@ -1,41 +1,95 @@
+import { useState } from 'react'
+import { signIn } from 'next-auth/client'
 import Link from 'next/link'
-import { Email, Lock } from '@styled-icons/material-outlined'
+import { useRouter } from 'next/router'
 
-import { FormLink, FormWrapper } from 'components/Form'
+import { Email, Lock, ErrorOutline } from '@styled-icons/material-outlined'
+import { FieldErrors, signInValidate } from 'utils/validations'
+import { FormLink, FormWrapper, FormLoading, FormError } from 'components/Form'
 import Button from 'components/Button'
 import TextField from 'components/TextField'
 
 import * as S from './styles'
 
-const FormSignIn = () => (
-  <FormWrapper>
-    <form>
-      <TextField
-        name="email"
-        placeholder="E-mail"
-        type="email"
-        icon={<Email />}
-      />
-      <TextField
-        name="password"
-        placeholder="Senha"
-        type="password"
-        icon={<Lock />}
-      />
-      <S.ForgotPassword href="#">esqueci minha senha</S.ForgotPassword>
+const FormSignIn = () => {
+  const [formError, setFormError] = useState('')
+  const [fieldError, setFieldError] = useState<FieldErrors>({})
+  const [values, setValues] = useState({ email: '', password: '' })
+  const [loading, setLoading] = useState(false)
+  const routes = useRouter()
+  const { push, query } = routes
 
-      <Button size="large" fullWidth>
-        Entrar
-      </Button>
+  const handleInput = (field: string, value: string) => {
+    setValues((s) => ({ ...s, [field]: value }))
+  }
 
-      <FormLink>
-        Não possui uma conta?{' '}
-        <Link href="/sign-up">
-          <a>Criar conta</a>
-        </Link>
-      </FormLink>
-    </form>
-  </FormWrapper>
-)
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+    setLoading(true)
+    const errors = signInValidate(values)
+
+    if (Object.keys(errors).length) {
+      setFieldError(errors)
+      setLoading(false)
+      return
+    }
+
+    setFieldError({})
+
+    // sign in
+    const result = await signIn('credentials', {
+      ...values,
+      redirect: false,
+      callbackUrl: `${window.location.origin}${query?.callbackUrl || ''}`
+    })
+
+    if (result?.url) {
+      return push(result?.url)
+    }
+    setLoading(false)
+    // jogar o erro
+    setFormError('E-mail/Senha inválido!')
+  }
+
+  return (
+    <FormWrapper>
+      {!!formError && (
+        <FormError>
+          <ErrorOutline /> {formError}
+        </FormError>
+      )}
+      <form onSubmit={handleSubmit}>
+        <TextField
+          name="email"
+          placeholder="E-mail"
+          type="email"
+          error={fieldError?.email}
+          onInputChange={(v) => handleInput('email', v)}
+          icon={<Email />}
+        />
+        <TextField
+          name="password"
+          placeholder="Senha"
+          type="password"
+          error={fieldError?.password}
+          onInputChange={(v) => handleInput('password', v)}
+          icon={<Lock />}
+        />
+        <S.ForgotPassword href="#">Esqueceu sua senha?</S.ForgotPassword>
+
+        <Button type="submit" size="large" fullWidth disabled={loading}>
+          {loading ? <FormLoading /> : <span>ENTRAR</span>}
+        </Button>
+
+        <FormLink>
+          Não tem uma conta?{' '}
+          <Link href="/sign-up">
+            <a>Criar conta</a>
+          </Link>
+        </FormLink>
+      </form>
+    </FormWrapper>
+  )
+}
 
 export default FormSignIn

@@ -8,6 +8,7 @@ export type LogoProps = {
 }
 
 const Logo = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   id = 'logo',
   color = 'white',
   size = 'normal',
@@ -15,6 +16,19 @@ const Logo = ({
 }: LogoProps) => (
   <S.Wrapper color={color} size={size} hideOnMobile={hideOnMobile}>
     <svg
+      width="69"
+      height="24"
+      viewBox="0 0 69 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M16.8329 24L16.8069 11.936L10.8269 21.92H9.3189L3.3389 12.092V24H0.114899V5.8H2.8969L10.1249 17.864L17.2229 5.8H20.0049L20.0309 24H16.8329ZM36.7509 19.788H27.6509L25.8569 24H22.3729L30.5629 5.8H33.8909L42.1069 24H38.5709L36.7509 19.788ZM35.6329 17.136L32.2009 9.18L28.7949 17.136H35.6329ZM44.4215 5.8H47.8015V24H44.4215V5.8ZM40.9635 0.755999H44.7855L48.2955 4.318H45.4875L40.9635 0.755999ZM68.8963 5.8V24H66.1143L56.0783 11.676V24H52.7243V5.8H55.5063L65.5423 18.124V5.8H68.8963Z"
+        fill="#FA9442"
+      />
+    </svg>
+
+    {/* <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 158 48"
@@ -86,7 +100,7 @@ const Logo = ({
           <stop offset="1" stopColor="#F23131" />
         </linearGradient>
       </defs>
-    </svg>
+    </svg> */}
   </S.Wrapper>
 )
 
