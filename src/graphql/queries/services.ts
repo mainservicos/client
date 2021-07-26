@@ -34,7 +34,10 @@ export const QUERY_SERVICES_BY_SLUG = gql`
         src: url
       }
       user {
-        name
+        username
+        contacts {
+          whatsapp
+        }
       }
       categories {
         name

@@ -12,9 +12,15 @@ export type ServiceInfoProps = {
   title: string
   description: string
   price: number
+  whatsapp: string
 }
 
-const ServiceInfo = ({ title, description, price }: ServiceInfoProps) => (
+const ServiceInfo = ({
+  title,
+  description,
+  price,
+  whatsapp
+}: ServiceInfoProps) => (
   <S.Wrapper>
     <Heading color="black" lineBottom>
       {title}
@@ -26,7 +32,7 @@ const ServiceInfo = ({ title, description, price }: ServiceInfoProps) => (
 
     <S.ButtonsWrapper>
       <Button icon={<ContactPhone />} size="large" minimal>
-        Contato do anúncio
+        {whatsapp}
       </Button>
     </S.ButtonsWrapper>
   </S.Wrapper>

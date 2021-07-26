@@ -41,9 +41,15 @@ export interface QueryHome_newServices_cover {
   url: string;
 }
 
+export interface QueryHome_newServices_user_contacts {
+  __typename: "Contact";
+  whatsapp: string | null;
+}
+
 export interface QueryHome_newServices_user {
   __typename: "UsersPermissionsUser";
-  name: string;
+  username: string;
+  contacts: QueryHome_newServices_user_contacts[];
 }
 
 export interface QueryHome_newServices {
@@ -61,9 +67,15 @@ export interface QueryHome_otherServices_cover {
   url: string;
 }
 
+export interface QueryHome_otherServices_user_contacts {
+  __typename: "Contact";
+  whatsapp: string | null;
+}
+
 export interface QueryHome_otherServices_user {
   __typename: "UsersPermissionsUser";
-  name: string;
+  username: string;
+  contacts: QueryHome_otherServices_user_contacts[];
 }
 
 export interface QueryHome_otherServices {

@@ -448,6 +448,106 @@ type deleteCategoryPayload {
   category: Category
 }
 
+type Contact {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  facebook: String
+  whatsapp: String
+  user: UsersPermissionsUser
+}
+
+type ContactConnection {
+  values: [Contact]
+  groupBy: ContactGroupBy
+  aggregate: ContactAggregator
+}
+
+type ContactAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ContactGroupBy {
+  id: [ContactConnectionId]
+  created_at: [ContactConnectionCreated_at]
+  updated_at: [ContactConnectionUpdated_at]
+  facebook: [ContactConnectionFacebook]
+  whatsapp: [ContactConnectionWhatsapp]
+  user: [ContactConnectionUser]
+}
+
+type ContactConnectionId {
+  key: ID
+  connection: ContactConnection
+}
+
+type ContactConnectionCreated_at {
+  key: DateTime
+  connection: ContactConnection
+}
+
+type ContactConnectionUpdated_at {
+  key: DateTime
+  connection: ContactConnection
+}
+
+type ContactConnectionFacebook {
+  key: String
+  connection: ContactConnection
+}
+
+type ContactConnectionWhatsapp {
+  key: String
+  connection: ContactConnection
+}
+
+type ContactConnectionUser {
+  key: ID
+  connection: ContactConnection
+}
+
+input ContactInput {
+  facebook: String
+  whatsapp: String
+  user: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editContactInput {
+  facebook: String
+  whatsapp: String
+  user: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createContactInput {
+  data: ContactInput
+}
+
+type createContactPayload {
+  contact: Contact
+}
+
+input updateContactInput {
+  where: InputID
+  data: editContactInput
+}
+
+type updateContactPayload {
+  contact: Contact
+}
+
+input deleteContactInput {
+  where: InputID
+}
+
+type deleteContactPayload {
+  contact: Contact
+}
+
 type PhoneNumber {
   id: ID!
   created_at: DateTime!
@@ -1080,12 +1180,12 @@ type UsersPermissionsUser {
   confirmed: Boolean
   blocked: Boolean
   role: UsersPermissionsRole
-  socialLink: [ComponentUserSocialLinks]
   photo: UploadFile
-  name: String!
+  name: String
   description: String
   services(sort: String, limit: Int, start: Int, where: JSON): [Service!]!
   phone_numbers(sort: String, limit: Int, start: Int, where: JSON): [PhoneNumber!]!
+  contacts(sort: String, limit: Int, start: Int, where: JSON): [Contact!]!
 }
 
 type UsersPermissionsUserConnection {
@@ -1184,12 +1284,12 @@ input UserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
-  socialLink: [ComponentUserSocialLinkInput]
   photo: ID
-  name: String!
+  name: String
   description: String
   services: [ID]
   phone_numbers: [ID]
+  contacts: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -1204,12 +1304,12 @@ input editUserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
-  socialLink: [editComponentUserSocialLinkInput]
   photo: ID
   name: String
   description: String
   services: [ID]
   phone_numbers: [ID]
+  contacts: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -1291,17 +1391,18 @@ enum ENUM_COMPONENTUSERSOCIALLINKS_TITLE {
   Linkedin
   Instagram
   Twitter
+  WhatsApp
 }
 
 type ComponentUserSocialLinks {
   id: ID!
-  url: String!
-  title: ENUM_COMPONENTUSERSOCIALLINKS_TITLE!
+  url: String
+  title: ENUM_COMPONENTUSERSOCIALLINKS_TITLE
 }
 
 input ComponentUserSocialLinkInput {
-  url: String!
-  title: ENUM_COMPONENTUSERSOCIALLINKS_TITLE!
+  url: String
+  title: ENUM_COMPONENTUSERSOCIALLINKS_TITLE
 }
 
 input editComponentUserSocialLinkInput {
@@ -1310,7 +1411,7 @@ input editComponentUserSocialLinkInput {
   title: ENUM_COMPONENTUSERSOCIALLINKS_TITLE
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Address | AddressConnection | AddressAggregator | AddressGroupBy | AddressConnectionId | AddressConnectionCreated_at | AddressConnectionUpdated_at | AddressConnectionName | AddressConnectionLogradouro | AddressConnectionCep | AddressConnectionBairro | AddressConnectionCidade | AddressConnectionUf | AddressConnectionNumero | AddressConnectionPublished_at | createAddressPayload | updateAddressPayload | deleteAddressPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionRibbon | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | PhoneNumber | PhoneNumberConnection | PhoneNumberAggregator | PhoneNumberGroupBy | PhoneNumberConnectionId | PhoneNumberConnectionCreated_at | PhoneNumberConnectionUpdated_at | PhoneNumberConnectionPhone | PhoneNumberConnectionIsWhatsApp | PhoneNumberConnectionIsVisible | PhoneNumberConnectionUser | PhoneNumberConnectionPublished_at | createPhoneNumberPayload | updatePhoneNumberPayload | deletePhoneNumberPayload | Service | ServiceConnection | ServiceAggregator | ServiceAggregatorSum | ServiceAggregatorAvg | ServiceAggregatorMin | ServiceAggregatorMax | ServiceGroupBy | ServiceConnectionId | ServiceConnectionCreated_at | ServiceConnectionUpdated_at | ServiceConnectionName | ServiceConnectionShort_description | ServiceConnectionDescription | ServiceConnectionPrice | ServiceConnectionSlug | ServiceConnectionCover | ServiceConnectionUser | ServiceConnectionAddress | ServiceConnectionReleased_at | ServiceConnectionPublished_at | createServicePayload | updateServicePayload | deleteServicePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionPhoto | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionDescription | createUserPayload | updateUserPayload | deleteUserPayload | ComponentUserButton | ComponentUserRibbon | ComponentUserSocialLinks
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Address | AddressConnection | AddressAggregator | AddressGroupBy | AddressConnectionId | AddressConnectionCreated_at | AddressConnectionUpdated_at | AddressConnectionName | AddressConnectionLogradouro | AddressConnectionCep | AddressConnectionBairro | AddressConnectionCidade | AddressConnectionUf | AddressConnectionNumero | AddressConnectionPublished_at | createAddressPayload | updateAddressPayload | deleteAddressPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionRibbon | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Contact | ContactConnection | ContactAggregator | ContactGroupBy | ContactConnectionId | ContactConnectionCreated_at | ContactConnectionUpdated_at | ContactConnectionFacebook | ContactConnectionWhatsapp | ContactConnectionUser | createContactPayload | updateContactPayload | deleteContactPayload | PhoneNumber | PhoneNumberConnection | PhoneNumberAggregator | PhoneNumberGroupBy | PhoneNumberConnectionId | PhoneNumberConnectionCreated_at | PhoneNumberConnectionUpdated_at | PhoneNumberConnectionPhone | PhoneNumberConnectionIsWhatsApp | PhoneNumberConnectionIsVisible | PhoneNumberConnectionUser | PhoneNumberConnectionPublished_at | createPhoneNumberPayload | updatePhoneNumberPayload | deletePhoneNumberPayload | Service | ServiceConnection | ServiceAggregator | ServiceAggregatorSum | ServiceAggregatorAvg | ServiceAggregatorMin | ServiceAggregatorMax | ServiceGroupBy | ServiceConnectionId | ServiceConnectionCreated_at | ServiceConnectionUpdated_at | ServiceConnectionName | ServiceConnectionShort_description | ServiceConnectionDescription | ServiceConnectionPrice | ServiceConnectionSlug | ServiceConnectionCover | ServiceConnectionUser | ServiceConnectionAddress | ServiceConnectionReleased_at | ServiceConnectionPublished_at | createServicePayload | updateServicePayload | deleteServicePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionPhoto | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionDescription | createUserPayload | updateUserPayload | deleteUserPayload | ComponentUserButton | ComponentUserRibbon | ComponentUserSocialLinks
 
 input InputID {
   id: ID!
@@ -1338,6 +1439,9 @@ type Query {
   category(id: ID!, publicationState: PublicationState): Category
   categories(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Category!]!
   categoriesConnection(sort: String, limit: Int, start: Int, where: JSON): CategoryConnection
+  contact(id: ID!, publicationState: PublicationState): Contact
+  contacts(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Contact!]!
+  contactsConnection(sort: String, limit: Int, start: Int, where: JSON): ContactConnection
   phoneNumber(id: ID!, publicationState: PublicationState): PhoneNumber
   phoneNumbers(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [PhoneNumber!]!
   phoneNumbersConnection(sort: String, limit: Int, start: Int, where: JSON): PhoneNumberConnection
@@ -1366,6 +1470,9 @@ type Mutation {
   createCategory(input: createCategoryInput): createCategoryPayload
   updateCategory(input: updateCategoryInput): updateCategoryPayload
   deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
+  createContact(input: createContactInput): createContactPayload
+  updateContact(input: updateContactInput): updateContactPayload
+  deleteContact(input: deleteContactInput): deleteContactPayload
   createPhoneNumber(input: createPhoneNumberInput): createPhoneNumberPayload
   updatePhoneNumber(input: updatePhoneNumberInput): updatePhoneNumberPayload
   deletePhoneNumber(input: deletePhoneNumberInput): deletePhoneNumberPayload

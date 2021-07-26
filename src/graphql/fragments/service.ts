@@ -9,7 +9,10 @@ export const ServiceFragment = gql`
       url
     }
     user {
-      name
+      username
+      contacts {
+        whatsapp
+      }
     }
     price
   }

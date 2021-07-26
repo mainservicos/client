@@ -22,12 +22,12 @@ const Service = ({
       <S.SectionServiceInfo>
         <ServiceInfo {...serviceInfo} />
       </S.SectionServiceInfo>
-      <S.SectionGallery>
-        {!!gallery && <Gallery items={gallery} />}
-      </S.SectionGallery>
       <S.SectionDescription>
         <TextContent title="Descrição" content={description} />
       </S.SectionDescription>
+      <S.SectionGallery>
+        {!!gallery && <Gallery items={gallery} />}
+      </S.SectionGallery>
     </S.Main>
   </Base>
 )

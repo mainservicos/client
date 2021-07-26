@@ -52,7 +52,6 @@ export async function getStaticProps() {
       newServices: newServices.map((service) => ({
         title: service.name,
         slug: service.slug,
-        user: service.user!.name,
         img: `http://localhost:1337${service.cover?.url}`,
         price: service.price
       })),
@@ -60,7 +59,6 @@ export async function getStaticProps() {
       otherServices: otherServices.map((service) => ({
         title: service.name,
         slug: service.slug,
-        user: service.user!.name,
         img: `http://localhost:1337${service.cover?.url}`,
         price: service.price
       }))

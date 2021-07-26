@@ -18,9 +18,15 @@ export interface QueryServiceBySlug_services_cover {
   src: string;
 }
 
+export interface QueryServiceBySlug_services_user_contacts {
+  __typename: "Contact";
+  whatsapp: string | null;
+}
+
 export interface QueryServiceBySlug_services_user {
   __typename: "UsersPermissionsUser";
-  name: string;
+  username: string;
+  contacts: QueryServiceBySlug_services_user_contacts[];
 }
 
 export interface QueryServiceBySlug_services_categories {

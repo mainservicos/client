@@ -63,14 +63,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       revalidate: 60,
-      cover: `http://localhost:1337${service.cover?.src}`,
+      cover: `${process.env.NEXT_PUBLIC_API_URL}/${service.cover?.src}`,
       serviceInfo: {
         title: service.name,
         price: service.price,
-        description: service.short_description
+        description: service.short_description,
+        whatsapp: service.user?.contacts[0].whatsapp
       },
       gallery: service.gallery.map((image) => ({
-        src: `http://localhost:1337${image.src}`,
+        src: `${process.env.NEXT_PUBLIC_API_URL}/${image.src}`,
         label: image.label
       })),
       description: service.description

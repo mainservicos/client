@@ -12,9 +12,15 @@ export interface queryServices_services_cover {
   url: string;
 }
 
+export interface queryServices_services_user_contacts {
+  __typename: "Contact";
+  whatsapp: string | null;
+}
+
 export interface queryServices_services_user {
   __typename: "UsersPermissionsUser";
-  name: string;
+  username: string;
+  contacts: queryServices_services_user_contacts[];
 }
 
 export interface queryServices_services {

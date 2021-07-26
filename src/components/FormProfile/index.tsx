@@ -1,47 +1,50 @@
 import Button from 'components/Button'
 import Heading from 'components/Heading'
 import TextField from 'components/TextField'
+import { Email, Phone, People } from '@styled-icons/material-outlined'
 
 import * as S from './styles'
 
-const FormProfile = () => (
+export type FormProfileProps = {
+  username?: string
+  email?: string
+  whatsapp?: string
+}
+
+const FormProfile = ({ email, username, whatsapp }: FormProfileProps) => (
   <>
     <Heading lineBottom color="black" size="small">
-      Meu Perfil
+      Meu perfil
     </Heading>
 
     <S.Form>
       <TextField
-        name="name"
-        placeholder="Name"
-        label="Name"
-        initialValue="John Doe"
+        icon={<People />}
+        name="username"
+        placeholder="Username"
+        label="Username"
+        initialValue={username}
       />
 
       <TextField
+        icon={<Email />}
         name="email"
         type="email"
         placeholder="E-mail"
-        initialValue="johndoe@gmail.com"
+        initialValue={email}
         label="E-mail"
         disabled
       />
 
       <TextField
-        name="password"
-        type="password"
-        placeholder="Insira sua senha"
-        label="Password"
+        icon={<Phone />}
+        name="whatsapp"
+        placeholder="(XX) XXXXX-XXXX"
+        label="WhatsApp"
+        initialValue={whatsapp}
       />
 
-      <TextField
-        name="new_password"
-        type="password"
-        placeholder="Nova Senha"
-        label="New password"
-      />
-
-      <Button size="large">Save</Button>
+      <Button size="large">Salvar</Button>
     </S.Form>
   </>
 )

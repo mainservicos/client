@@ -1,4 +1,4 @@
-import FormProfile, { FormProfileProps } from 'components/FormProfile'
+import FormContact, { FormContactProps } from 'components/FormContact'
 import { GetServerSidePropsContext } from 'next'
 import Profile from 'templates/Profile'
 import protectedRoutes from 'utils/protected-routes'
@@ -6,10 +6,10 @@ import { initializeApollo } from 'utils/apollo'
 import { QueryProfileMe } from 'graphql/generated/QueryProfileMe'
 import { QUERY_PROFILE_ME } from 'graphql/queries/profile'
 
-export default function Me(props: FormProfileProps) {
+export default function Me(props: FormContactProps) {
   return (
     <Profile>
-      <FormProfile {...props} />
+      <FormContact {...props} />
     </Profile>
   )
 }
