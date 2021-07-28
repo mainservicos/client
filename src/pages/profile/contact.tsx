@@ -3,8 +3,11 @@ import { GetServerSidePropsContext } from 'next'
 import Profile from 'templates/Profile'
 import protectedRoutes from 'utils/protected-routes'
 import { initializeApollo } from 'utils/apollo'
-import { QueryProfileMe } from 'graphql/generated/QueryProfileMe'
-import { QUERY_PROFILE_ME } from 'graphql/queries/profile'
+import {
+  QueryContact,
+  QueryContactVariables
+} from 'graphql/generated/QueryContact'
+import { QUERY_CONTACT } from 'graphql/queries/contact'
 
 export default function Me(props: FormContactProps) {
   return (
@@ -18,15 +21,18 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await protectedRoutes(context)
   const apolloClient = initializeApollo(null, session)
 
-  const { data } = await apolloClient.query<QueryProfileMe>({
-    query: QUERY_PROFILE_ME
+  const { data } = await apolloClient.query<
+    QueryContact,
+    QueryContactVariables
+  >({
+    query: QUERY_CONTACT,
+    variables: { identifier: session?.user?.email }
   })
 
   return {
     props: {
       session,
-      username: data.me?.username,
-      email: data.me?.email
+      whatsapp: data.contacts[0].whatsapp
     }
   }
 }

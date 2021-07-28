@@ -8,7 +8,6 @@ import formatPrice from 'utils/format-price'
 export type ServiceCardProps = {
   slug: string
   title: string
-  user: string
   img: string
   price: number
   promotionalPrice?: number
@@ -21,7 +20,6 @@ export type ServiceCardProps = {
 const ServiceCard = ({
   slug,
   title,
-  user,
   img,
   price,
   promotionalPrice,
@@ -44,7 +42,6 @@ const ServiceCard = ({
       <Link href={`service/${slug}`} passHref>
         <S.Info>
           <S.Title>{title}</S.Title>
-          <S.Developer>{user}</S.Developer>
         </S.Info>
       </Link>
       <S.BuyBox>

@@ -41,15 +41,9 @@ export interface QueryHome_newServices_cover {
   url: string;
 }
 
-export interface QueryHome_newServices_user_contacts {
+export interface QueryHome_newServices_contact {
   __typename: "Contact";
   whatsapp: string | null;
-}
-
-export interface QueryHome_newServices_user {
-  __typename: "UsersPermissionsUser";
-  username: string;
-  contacts: QueryHome_newServices_user_contacts[];
 }
 
 export interface QueryHome_newServices {
@@ -58,8 +52,8 @@ export interface QueryHome_newServices {
   name: string;
   slug: string | null;
   cover: QueryHome_newServices_cover | null;
-  user: QueryHome_newServices_user | null;
   price: number | null;
+  contact: QueryHome_newServices_contact | null;
 }
 
 export interface QueryHome_otherServices_cover {
@@ -67,15 +61,9 @@ export interface QueryHome_otherServices_cover {
   url: string;
 }
 
-export interface QueryHome_otherServices_user_contacts {
+export interface QueryHome_otherServices_contact {
   __typename: "Contact";
   whatsapp: string | null;
-}
-
-export interface QueryHome_otherServices_user {
-  __typename: "UsersPermissionsUser";
-  username: string;
-  contacts: QueryHome_otherServices_user_contacts[];
 }
 
 export interface QueryHome_otherServices {
@@ -84,8 +72,8 @@ export interface QueryHome_otherServices {
   name: string;
   slug: string | null;
   cover: QueryHome_otherServices_cover | null;
-  user: QueryHome_otherServices_user | null;
   price: number | null;
+  contact: QueryHome_otherServices_contact | null;
 }
 
 export interface QueryHome {

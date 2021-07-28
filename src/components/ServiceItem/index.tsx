@@ -1,23 +1,36 @@
 import * as S from './styles'
+import Link from 'next/link'
 
 export type ServiceItemProps = {
-  img: string
-  title: string
+  id: string
+  cover: coverProps
+  name: string
   price: string
+  slug: string
 }
 
-const ServiceItem = ({ img, title, price }: ServiceItemProps) => (
-  <S.Wrapper>
-    <S.ServiceContent>
-      <S.ImageBox>
-        <img src={img} alt={title} />
-      </S.ImageBox>
+type coverProps = {
+  url: string
+  alternativeText: string
+}
 
-      <S.Content>
-        <S.Title>{title}</S.Title>
-        <S.Price>{price}</S.Price>
-      </S.Content>
-    </S.ServiceContent>
+const ServiceItem = ({ cover, name, price, slug }: ServiceItemProps) => (
+  <S.Wrapper>
+    <Link href={`/service/${slug}`} passHref>
+      <S.ServiceContent>
+        <S.ImageBox>
+          <img
+            src={process.env.NEXT_PUBLIC_API_URL + cover.url}
+            alt={cover.alternativeText}
+          />
+        </S.ImageBox>
+
+        <S.Content>
+          <S.Title>{name}</S.Title>
+          <S.Price>{price}</S.Price>
+        </S.Content>
+      </S.ServiceContent>
+    </Link>
   </S.Wrapper>
 )
 

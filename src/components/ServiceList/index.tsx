@@ -14,7 +14,7 @@ const ServiceList = ({ items = [] }: ServiceListProps) => (
     </Heading>
 
     {items.length ? (
-      items.map((item) => <ServiceItem key={item.title} {...item} />)
+      items.map((item) => <ServiceItem key={item.id} {...item} />)
     ) : (
       <Empty
         title="You have no orders yet"

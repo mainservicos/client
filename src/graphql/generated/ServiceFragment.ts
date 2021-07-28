@@ -12,15 +12,9 @@ export interface ServiceFragment_cover {
   url: string;
 }
 
-export interface ServiceFragment_user_contacts {
+export interface ServiceFragment_contact {
   __typename: "Contact";
   whatsapp: string | null;
-}
-
-export interface ServiceFragment_user {
-  __typename: "UsersPermissionsUser";
-  username: string;
-  contacts: ServiceFragment_user_contacts[];
 }
 
 export interface ServiceFragment {
@@ -29,6 +23,6 @@ export interface ServiceFragment {
   name: string;
   slug: string | null;
   cover: ServiceFragment_cover | null;
-  user: ServiceFragment_user | null;
   price: number | null;
+  contact: ServiceFragment_contact | null;
 }

@@ -12,6 +12,10 @@ export type ServiceInfoProps = {
   title: string
   description: string
   price: number
+  contact: ContactProps
+}
+
+type ContactProps = {
   whatsapp: string
 }
 
@@ -19,7 +23,7 @@ const ServiceInfo = ({
   title,
   description,
   price,
-  whatsapp
+  contact
 }: ServiceInfoProps) => (
   <S.Wrapper>
     <Heading color="black" lineBottom>
@@ -32,7 +36,7 @@ const ServiceInfo = ({
 
     <S.ButtonsWrapper>
       <Button icon={<ContactPhone />} size="large" minimal>
-        {whatsapp}
+        {contact?.whatsapp}
       </Button>
     </S.ButtonsWrapper>
   </S.Wrapper>

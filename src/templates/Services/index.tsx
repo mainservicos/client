@@ -68,7 +68,6 @@ const ServicesTemplate = ({ filterItems }: ServicesTemplateProps) => {
                     key={service.slug}
                     title={service.name}
                     slug={service.slug!}
-                    user={service.user!.name}
                     img={`http://localhost:1337${service.cover!.url}`}
                     price={service.price!}
                   />

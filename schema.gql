@@ -548,124 +548,6 @@ type deleteContactPayload {
   contact: Contact
 }
 
-type PhoneNumber {
-  id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
-  phone: String!
-  isWhatsApp: Boolean!
-  isVisible: Boolean!
-  user: UsersPermissionsUser
-  published_at: DateTime
-}
-
-type PhoneNumberConnection {
-  values: [PhoneNumber]
-  groupBy: PhoneNumberGroupBy
-  aggregate: PhoneNumberAggregator
-}
-
-type PhoneNumberAggregator {
-  count: Int
-  totalCount: Int
-}
-
-type PhoneNumberGroupBy {
-  id: [PhoneNumberConnectionId]
-  created_at: [PhoneNumberConnectionCreated_at]
-  updated_at: [PhoneNumberConnectionUpdated_at]
-  phone: [PhoneNumberConnectionPhone]
-  isWhatsApp: [PhoneNumberConnectionIsWhatsApp]
-  isVisible: [PhoneNumberConnectionIsVisible]
-  user: [PhoneNumberConnectionUser]
-  published_at: [PhoneNumberConnectionPublished_at]
-}
-
-type PhoneNumberConnectionId {
-  key: ID
-  connection: PhoneNumberConnection
-}
-
-type PhoneNumberConnectionCreated_at {
-  key: DateTime
-  connection: PhoneNumberConnection
-}
-
-type PhoneNumberConnectionUpdated_at {
-  key: DateTime
-  connection: PhoneNumberConnection
-}
-
-type PhoneNumberConnectionPhone {
-  key: String
-  connection: PhoneNumberConnection
-}
-
-type PhoneNumberConnectionIsWhatsApp {
-  key: Boolean
-  connection: PhoneNumberConnection
-}
-
-type PhoneNumberConnectionIsVisible {
-  key: Boolean
-  connection: PhoneNumberConnection
-}
-
-type PhoneNumberConnectionUser {
-  key: ID
-  connection: PhoneNumberConnection
-}
-
-type PhoneNumberConnectionPublished_at {
-  key: DateTime
-  connection: PhoneNumberConnection
-}
-
-input PhoneNumberInput {
-  phone: String!
-  isWhatsApp: Boolean
-  isVisible: Boolean
-  user: ID
-  published_at: DateTime
-  created_by: ID
-  updated_by: ID
-}
-
-input editPhoneNumberInput {
-  phone: String
-  isWhatsApp: Boolean
-  isVisible: Boolean
-  user: ID
-  published_at: DateTime
-  created_by: ID
-  updated_by: ID
-}
-
-input createPhoneNumberInput {
-  data: PhoneNumberInput
-}
-
-type createPhoneNumberPayload {
-  phoneNumber: PhoneNumber
-}
-
-input updatePhoneNumberInput {
-  where: InputID
-  data: editPhoneNumberInput
-}
-
-type updatePhoneNumberPayload {
-  phoneNumber: PhoneNumber
-}
-
-input deletePhoneNumberInput {
-  where: InputID
-}
-
-type deletePhoneNumberPayload {
-  phoneNumber: PhoneNumber
-}
-
 type Service {
   id: ID!
   created_at: DateTime!
@@ -676,9 +558,9 @@ type Service {
   price: Float
   slug: String
   cover: UploadFile
-  user: UsersPermissionsUser
   address: Address
   released_at: Date!
+  contact: Contact
   published_at: DateTime
   gallery(sort: String, limit: Int, start: Int, where: JSON): [UploadFile!]!
   categories(sort: String, limit: Int, start: Int, where: JSON): [Category!]!
@@ -725,9 +607,9 @@ type ServiceGroupBy {
   price: [ServiceConnectionPrice]
   slug: [ServiceConnectionSlug]
   cover: [ServiceConnectionCover]
-  user: [ServiceConnectionUser]
   address: [ServiceConnectionAddress]
   released_at: [ServiceConnectionReleased_at]
+  contact: [ServiceConnectionContact]
   published_at: [ServiceConnectionPublished_at]
 }
 
@@ -776,17 +658,17 @@ type ServiceConnectionCover {
   connection: ServiceConnection
 }
 
-type ServiceConnectionUser {
-  key: ID
-  connection: ServiceConnection
-}
-
 type ServiceConnectionAddress {
   key: ID
   connection: ServiceConnection
 }
 
 type ServiceConnectionReleased_at {
+  key: ID
+  connection: ServiceConnection
+}
+
+type ServiceConnectionContact {
   key: ID
   connection: ServiceConnection
 }
@@ -805,9 +687,9 @@ input ServiceInput {
   cover: ID
   gallery: [ID]
   categories: [ID]
-  user: ID
   address: ID
   released_at: Date!
+  contact: ID
   published_at: DateTime
   created_by: ID
   updated_by: ID
@@ -822,9 +704,9 @@ input editServiceInput {
   cover: ID
   gallery: [ID]
   categories: [ID]
-  user: ID
   address: ID
   released_at: Date
+  contact: ID
   published_at: DateTime
   created_by: ID
   updated_by: ID
@@ -1183,9 +1065,8 @@ type UsersPermissionsUser {
   photo: UploadFile
   name: String
   description: String
-  services(sort: String, limit: Int, start: Int, where: JSON): [Service!]!
-  phone_numbers(sort: String, limit: Int, start: Int, where: JSON): [PhoneNumber!]!
   contacts(sort: String, limit: Int, start: Int, where: JSON): [Contact!]!
+  services(sort: String, limit: Int, start: Int, where: JSON): [Service!]!
 }
 
 type UsersPermissionsUserConnection {
@@ -1287,9 +1168,8 @@ input UserInput {
   photo: ID
   name: String
   description: String
-  services: [ID]
-  phone_numbers: [ID]
   contacts: [ID]
+  services: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -1307,9 +1187,8 @@ input editUserInput {
   photo: ID
   name: String
   description: String
-  services: [ID]
-  phone_numbers: [ID]
   contacts: [ID]
+  services: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -1411,7 +1290,7 @@ input editComponentUserSocialLinkInput {
   title: ENUM_COMPONENTUSERSOCIALLINKS_TITLE
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Address | AddressConnection | AddressAggregator | AddressGroupBy | AddressConnectionId | AddressConnectionCreated_at | AddressConnectionUpdated_at | AddressConnectionName | AddressConnectionLogradouro | AddressConnectionCep | AddressConnectionBairro | AddressConnectionCidade | AddressConnectionUf | AddressConnectionNumero | AddressConnectionPublished_at | createAddressPayload | updateAddressPayload | deleteAddressPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionRibbon | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Contact | ContactConnection | ContactAggregator | ContactGroupBy | ContactConnectionId | ContactConnectionCreated_at | ContactConnectionUpdated_at | ContactConnectionFacebook | ContactConnectionWhatsapp | ContactConnectionUser | createContactPayload | updateContactPayload | deleteContactPayload | PhoneNumber | PhoneNumberConnection | PhoneNumberAggregator | PhoneNumberGroupBy | PhoneNumberConnectionId | PhoneNumberConnectionCreated_at | PhoneNumberConnectionUpdated_at | PhoneNumberConnectionPhone | PhoneNumberConnectionIsWhatsApp | PhoneNumberConnectionIsVisible | PhoneNumberConnectionUser | PhoneNumberConnectionPublished_at | createPhoneNumberPayload | updatePhoneNumberPayload | deletePhoneNumberPayload | Service | ServiceConnection | ServiceAggregator | ServiceAggregatorSum | ServiceAggregatorAvg | ServiceAggregatorMin | ServiceAggregatorMax | ServiceGroupBy | ServiceConnectionId | ServiceConnectionCreated_at | ServiceConnectionUpdated_at | ServiceConnectionName | ServiceConnectionShort_description | ServiceConnectionDescription | ServiceConnectionPrice | ServiceConnectionSlug | ServiceConnectionCover | ServiceConnectionUser | ServiceConnectionAddress | ServiceConnectionReleased_at | ServiceConnectionPublished_at | createServicePayload | updateServicePayload | deleteServicePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionPhoto | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionDescription | createUserPayload | updateUserPayload | deleteUserPayload | ComponentUserButton | ComponentUserRibbon | ComponentUserSocialLinks
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Address | AddressConnection | AddressAggregator | AddressGroupBy | AddressConnectionId | AddressConnectionCreated_at | AddressConnectionUpdated_at | AddressConnectionName | AddressConnectionLogradouro | AddressConnectionCep | AddressConnectionBairro | AddressConnectionCidade | AddressConnectionUf | AddressConnectionNumero | AddressConnectionPublished_at | createAddressPayload | updateAddressPayload | deleteAddressPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionRibbon | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Contact | ContactConnection | ContactAggregator | ContactGroupBy | ContactConnectionId | ContactConnectionCreated_at | ContactConnectionUpdated_at | ContactConnectionFacebook | ContactConnectionWhatsapp | ContactConnectionUser | createContactPayload | updateContactPayload | deleteContactPayload | Service | ServiceConnection | ServiceAggregator | ServiceAggregatorSum | ServiceAggregatorAvg | ServiceAggregatorMin | ServiceAggregatorMax | ServiceGroupBy | ServiceConnectionId | ServiceConnectionCreated_at | ServiceConnectionUpdated_at | ServiceConnectionName | ServiceConnectionShort_description | ServiceConnectionDescription | ServiceConnectionPrice | ServiceConnectionSlug | ServiceConnectionCover | ServiceConnectionAddress | ServiceConnectionReleased_at | ServiceConnectionContact | ServiceConnectionPublished_at | createServicePayload | updateServicePayload | deleteServicePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionPhoto | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionDescription | createUserPayload | updateUserPayload | deleteUserPayload | ComponentUserButton | ComponentUserRibbon | ComponentUserSocialLinks
 
 input InputID {
   id: ID!
@@ -1442,9 +1321,6 @@ type Query {
   contact(id: ID!, publicationState: PublicationState): Contact
   contacts(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Contact!]!
   contactsConnection(sort: String, limit: Int, start: Int, where: JSON): ContactConnection
-  phoneNumber(id: ID!, publicationState: PublicationState): PhoneNumber
-  phoneNumbers(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [PhoneNumber!]!
-  phoneNumbersConnection(sort: String, limit: Int, start: Int, where: JSON): PhoneNumberConnection
   service(id: ID!, publicationState: PublicationState): Service
   services(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Service!]!
   servicesConnection(sort: String, limit: Int, start: Int, where: JSON): ServiceConnection
@@ -1473,9 +1349,6 @@ type Mutation {
   createContact(input: createContactInput): createContactPayload
   updateContact(input: updateContactInput): updateContactPayload
   deleteContact(input: deleteContactInput): deleteContactPayload
-  createPhoneNumber(input: createPhoneNumberInput): createPhoneNumberPayload
-  updatePhoneNumber(input: updatePhoneNumberInput): updatePhoneNumberPayload
-  deletePhoneNumber(input: deletePhoneNumberInput): deletePhoneNumberPayload
   createService(input: createServiceInput): createServicePayload
   updateService(input: updateServiceInput): updateServicePayload
   deleteService(input: deleteServiceInput): deleteServicePayload

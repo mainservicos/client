@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
 
 export const ServiceContent = styled.div`
   display: flex;
+  cursor: pointer;
 `
 
 export const ImageBox = styled.div`

@@ -1,17 +1,16 @@
 import Button from 'components/Button'
 import Heading from 'components/Heading'
 import TextField from 'components/TextField'
-import { Email, Phone, People } from '@styled-icons/material-outlined'
+import { Email, People } from '@styled-icons/material-outlined'
 
 import * as S from './styles'
 
 export type FormProfileProps = {
   username?: string
   email?: string
-  whatsapp?: string
 }
 
-const FormProfile = ({ email, username, whatsapp }: FormProfileProps) => (
+const FormProfile = ({ email, username }: FormProfileProps) => (
   <>
     <Heading lineBottom color="black" size="small">
       Meu perfil
@@ -34,14 +33,6 @@ const FormProfile = ({ email, username, whatsapp }: FormProfileProps) => (
         initialValue={email}
         label="E-mail"
         disabled
-      />
-
-      <TextField
-        icon={<Phone />}
-        name="whatsapp"
-        placeholder="(XX) XXXXX-XXXX"
-        label="WhatsApp"
-        initialValue={whatsapp}
       />
 
       <Button size="large">Salvar</Button>

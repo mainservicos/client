@@ -8,12 +8,9 @@ export const ServiceFragment = gql`
     cover {
       url
     }
-    user {
-      username
-      contacts {
-        whatsapp
-      }
-    }
     price
+    contact {
+      whatsapp
+    }
   }
 `

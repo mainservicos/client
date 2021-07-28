@@ -1,9 +1,15 @@
-import ServiceList, { ServiceListProps } from 'components/ServiceList'
-import Profile from 'templates/Profile'
-
-import ordersMock from 'components/ServiceList/mock'
 import { GetServerSidePropsContext } from 'next'
+import Profile from 'templates/Profile'
 import protectedRoutes from 'utils/protected-routes'
+import { initializeApollo } from 'utils/apollo'
+
+import ServiceList, { ServiceListProps } from 'components/ServiceList'
+
+import {
+  QueryServiceByUser,
+  QueryServiceByUserVariables
+} from 'graphql/generated/QueryServiceByUser'
+import { QUERY_SERVICES_BY_USER } from 'graphql/queries/services'
 
 export default function Services({ items }: ServiceListProps) {
   return (
@@ -15,10 +21,21 @@ export default function Services({ items }: ServiceListProps) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await protectedRoutes(context)
+  const apolloClient = initializeApollo(null, session)
+
+  const {
+    data: { users }
+  } = await apolloClient.query<QueryServiceByUser, QueryServiceByUserVariables>(
+    {
+      query: QUERY_SERVICES_BY_USER,
+      variables: { email: session?.user?.email }
+    }
+  )
+
   return {
     props: {
-      items: ordersMock,
-      session
+      session,
+      items: users[0].services
     }
   }
 }

@@ -2,8 +2,10 @@ import Link from 'next/link'
 import {
   AccountCircle,
   ExitToApp,
-  FormatListBulleted
+  FormatListBulleted,
+  Phone
 } from '@styled-icons/material-outlined'
+
 import { signOut } from 'next-auth/client'
 
 import * as S from './styles'
@@ -18,6 +20,13 @@ const ProfileMenu = ({ activeLink }: ProfileMenuProps) => (
       <S.Link isActive={activeLink === '/profile/me'} title="Meu perfil">
         <AccountCircle size={24} />
         <span>Meu Perfil</span>
+      </S.Link>
+    </Link>
+
+    <Link href="/profile/contact" passHref>
+      <S.Link isActive={activeLink === '/profile/contact'} title="Meu contato">
+        <Phone size={24} />
+        <span>Meu Contato</span>
       </S.Link>
     </Link>
 

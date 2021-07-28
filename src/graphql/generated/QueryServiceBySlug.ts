@@ -18,15 +18,9 @@ export interface QueryServiceBySlug_services_cover {
   src: string;
 }
 
-export interface QueryServiceBySlug_services_user_contacts {
+export interface QueryServiceBySlug_services_contact {
   __typename: "Contact";
   whatsapp: string | null;
-}
-
-export interface QueryServiceBySlug_services_user {
-  __typename: "UsersPermissionsUser";
-  username: string;
-  contacts: QueryServiceBySlug_services_user_contacts[];
 }
 
 export interface QueryServiceBySlug_services_categories {
@@ -43,7 +37,7 @@ export interface QueryServiceBySlug_services {
   price: number | null;
   gallery: QueryServiceBySlug_services_gallery[];
   cover: QueryServiceBySlug_services_cover | null;
-  user: QueryServiceBySlug_services_user | null;
+  contact: QueryServiceBySlug_services_contact | null;
   categories: QueryServiceBySlug_services_categories[];
   published_at: any | null;
 }
