@@ -1,4 +1,4 @@
-import Button from 'components/Button'
+// import Button from 'components/Button'
 import Heading from 'components/Heading'
 import TextField from 'components/TextField'
 import { Email, People } from '@styled-icons/material-outlined'
@@ -23,6 +23,7 @@ const FormProfile = ({ email, username }: FormProfileProps) => (
         placeholder="Username"
         label="Username"
         initialValue={username}
+        disabled
       />
 
       <TextField
@@ -35,7 +36,7 @@ const FormProfile = ({ email, username }: FormProfileProps) => (
         disabled
       />
 
-      <Button size="large">Salvar</Button>
+      {/* <Button size="large">Salvar</Button> */}
     </S.Form>
   </>
 )

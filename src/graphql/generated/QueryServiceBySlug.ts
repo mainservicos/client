@@ -39,7 +39,6 @@ export interface QueryServiceBySlug_services {
   cover: QueryServiceBySlug_services_cover | null;
   contact: QueryServiceBySlug_services_contact | null;
   categories: QueryServiceBySlug_services_categories[];
-  published_at: any | null;
 }
 
 export interface QueryServiceBySlug {

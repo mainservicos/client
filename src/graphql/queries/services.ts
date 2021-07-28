@@ -39,7 +39,6 @@ export const QUERY_SERVICES_BY_SLUG = gql`
       categories {
         name
       }
-      published_at
     }
   }
 `

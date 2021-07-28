@@ -1,4 +1,9 @@
+import Link from 'next/link'
 import Empty from 'components/Empty'
+import Button from 'components/Button'
+
+import { Add } from '@styled-icons/material-outlined'
+
 import ServiceItem, { ServiceItemProps } from 'components/ServiceItem'
 import Heading from 'components/Heading'
 import * as S from './styles'
@@ -13,14 +18,16 @@ const ServiceList = ({ items = [] }: ServiceListProps) => (
       Meus Anúncios
     </Heading>
 
+    <Link href="/" passHref>
+      <Button icon={<Add />} as="a">
+        Novo Anúncio
+      </Button>
+    </Link>
+
     {items.length ? (
       items.map((item) => <ServiceItem key={item.id} {...item} />)
     ) : (
-      <Empty
-        title="You have no orders yet"
-        description="Go back to the store and explore great games and offers"
-        hasLink
-      />
+      <Empty title="Você ainda não publicou nenhum anúncio" description="..." />
     )}
   </S.Wrapper>
 )

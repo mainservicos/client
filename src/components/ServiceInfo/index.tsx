@@ -1,4 +1,4 @@
-import { ContactPhone } from '@styled-icons/material-outlined'
+import { Whatsapp } from '@styled-icons/bootstrap'
 
 import Button from 'components/Button'
 import Heading from 'components/Heading'
@@ -35,7 +35,14 @@ const ServiceInfo = ({
     <S.Description>{description}</S.Description>
 
     <S.ButtonsWrapper>
-      <Button icon={<ContactPhone />} size="large" minimal>
+      <Button
+        icon={<Whatsapp />}
+        size="large"
+        href={`https://api.whatsapp.com/send?phone=55${contact.whatsapp}&text=Ol%C3%A1%2C%20vim%20pela%20plataforma%20Ma%C3%ACn.`}
+        minimal
+        as="a"
+        target="_blank"
+      >
         {contact?.whatsapp}
       </Button>
     </S.ButtonsWrapper>
