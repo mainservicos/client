@@ -1,4 +1,7 @@
-import { UsersPermissionsRegisterInput } from 'graphql/generated/globalTypes'
+import {
+  ServiceInput,
+  UsersPermissionsRegisterInput
+} from 'graphql/generated/globalTypes'
 import Joi from 'joi'
 
 const fieldsValidations = {
@@ -10,7 +13,14 @@ const fieldsValidations = {
   confirm_password: Joi.string()
     .valid(Joi.ref('password'))
     .required()
-    .messages({ 'any.only': 'confirm password does not match with password' })
+    .messages({ 'any.only': 'Repita a senha!' })
+}
+
+const fieldsValidationsService = {
+  contact: Joi.string()
+    .regex(/^[0-9]{11}$/)
+    .messages({ 'string.pattern.base': `Número de telefone incorreto` })
+    .required()
 }
 
 export type FieldErrors = {
@@ -31,6 +41,12 @@ function getFieldErrors(objError: Joi.ValidationResult) {
 
 export function signUpValidate(values: UsersPermissionsRegisterInput) {
   const schema = Joi.object(fieldsValidations)
+
+  return getFieldErrors(schema.validate(values, { abortEarly: false }))
+}
+
+export function createServiceValidate(values: ServiceInput) {
+  const schema = Joi.object(fieldsValidationsService)
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }

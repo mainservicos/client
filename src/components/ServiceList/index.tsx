@@ -16,9 +16,10 @@ const ServiceList = ({ items = [] }: ServiceListProps) => (
   <S.Wrapper>
     <Heading lineBottom lineColor="primary" color="black" size="small">
       Meus Anúncios
+      {console.log(items)}
     </Heading>
 
-    <Link href="/" passHref>
+    <Link href="/service/new" passHref>
       <Button icon={<Add />} as="a">
         Novo Anúncio
       </Button>

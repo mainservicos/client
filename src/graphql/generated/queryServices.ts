@@ -12,11 +12,6 @@ export interface queryServices_services_cover {
   url: string;
 }
 
-export interface queryServices_services_contact {
-  __typename: "Contact";
-  whatsapp: string | null;
-}
-
 export interface queryServices_services {
   __typename: "Service";
   id: string;
@@ -24,7 +19,7 @@ export interface queryServices_services {
   slug: string | null;
   cover: queryServices_services_cover | null;
   price: number | null;
-  contact: queryServices_services_contact | null;
+  contact: string | null;
 }
 
 export interface queryServices_servicesConnection_values {

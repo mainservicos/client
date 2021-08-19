@@ -33,9 +33,7 @@ export const QUERY_SERVICES_BY_SLUG = gql`
       cover {
         src: url
       }
-      contact {
-        whatsapp
-      }
+      contact
       categories {
         name
       }
@@ -44,21 +42,16 @@ export const QUERY_SERVICES_BY_SLUG = gql`
 `
 
 export const QUERY_SERVICES_BY_USER = gql`
-  query QueryServiceByUser($email: String!) {
-    users(where: { email: $email }) {
+  query QueryServiceByUser($id: String!) {
+    services(where: { user: { email: $id } }) {
       name
       id
-      email
-      services {
-        name
-        price
-        short_description
-        slug
-        cover {
-          url
-        }
-        released_at
+      contact
+      cover {
+        url
       }
+      price
+      slug
     }
   }
 `

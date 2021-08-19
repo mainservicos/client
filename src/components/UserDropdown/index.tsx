@@ -1,5 +1,9 @@
 import Link from 'next/link'
-import { AccountCircle, ExitToApp } from '@styled-icons/material-outlined'
+import {
+  AccountCircle,
+  ExitToApp,
+  FormatListBulleted
+} from '@styled-icons/material-outlined'
 import { ChevronDown } from '@styled-icons/boxicons-regular/ChevronDown'
 import { signOut } from 'next-auth/client'
 
@@ -26,6 +30,13 @@ const UserDropdown = ({ username }: UserDropdownProps) => (
         <S.Link>
           <AccountCircle />
           <span>Meu Perfil</span>
+        </S.Link>
+      </Link>
+
+      <Link href="/profile/services" passHref>
+        <S.Link>
+          <FormatListBulleted />
+          <span>Meus Anúncios</span>
         </S.Link>
       </Link>
 

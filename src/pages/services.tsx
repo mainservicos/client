@@ -17,50 +17,37 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   const apolloClient = initializeApollo()
 
   const filterPrice = {
-    title: 'Price',
+    title: 'Preço',
     name: 'price_lte',
     type: 'radio',
     fields: [
-      { label: 'Free', name: 0 },
-      { label: 'Under $50', name: 50 },
-      { label: 'Under $100', name: 100 },
-      { label: 'Under $150', name: 150 },
-      { label: 'Under $250', name: 250 },
-      { label: 'Under $500', name: 500 }
+      { label: 'Grátis', name: 0 },
+      { label: 'Até R$50', name: 50 },
+      { label: 'Até R$100', name: 100 },
+      { label: 'Até R$150', name: 150 },
+      { label: 'Até R$250', name: 250 },
+      { label: 'Até R$500', name: 500 }
     ]
   }
 
   const filterSort = {
-    title: 'Sort by price',
+    title: 'Ordernar por ',
     name: 'sort',
     type: 'radio',
     fields: [
-      { label: 'Lowest to highest', name: 'price:asc' },
-      { label: 'Highest to lowest', name: 'price:desc' }
+      { label: 'Menor valor', name: 'price:asc' },
+      { label: 'Maior valor', name: 'price:desc' }
     ]
   }
 
-  const filterCategories = {
-    title: 'Genres',
-    name: 'categories',
-    type: 'checkbox',
-    fields: [
-      { label: 'Action', name: 'action' },
-      { label: 'Adventure', name: 'adventure' },
-      { label: 'Sports', name: 'sports' },
-      { label: 'Puzzle', name: 'puzzle' },
-      { label: 'Horror', name: 'horror' },
-      { label: 'Platform', name: 'platform' },
-      { label: 'Fantasy', name: 'fantasy' },
-      { label: 'RPG', name: 'role-playing' },
-      { label: 'JRPG', name: 'jrpg' },
-      { label: 'Simulation', name: 'simulation' },
-      { label: 'Strategy', name: 'strategy' },
-      { label: 'Shooter', name: 'shooter' }
-    ]
-  }
+  // const filterCategories = {
+  //   title: 'Categorias',
+  //   name: 'categories',
+  //   type: 'checkbox',
+  //   fields: [{ label: 'Costura', name: 'costura' }]
+  // }
 
-  const filterItems = [filterSort, filterPrice, filterCategories]
+  const filterItems = [filterSort, filterPrice]
 
   await apolloClient.query<queryServices, queryServicesVariables>({
     query: QUERY_SERVICES,

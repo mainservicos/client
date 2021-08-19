@@ -44,9 +44,12 @@
     "nextjs-progressbar": "^0.0.11",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-input-mask": "^2.0.4",
     "react-slick": "^0.28.1",
+    "react-slugify": "^2.0.3",
     "styled-components": "^5.2.1",
-    "styled-media-query": "^2.1.2"
+    "styled-media-query": "^2.1.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -62,6 +65,7 @@
     "@types/react": "^17.0.3",
     "@types/react-slick": "^0.23.4",
     "@types/styled-components": "^5.1.9",
+    "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "apollo": "^2.33.4",

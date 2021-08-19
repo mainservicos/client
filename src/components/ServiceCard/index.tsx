@@ -49,9 +49,11 @@ const ServiceCard = ({
           <S.Price isPromotional>{formatPrice(price)}</S.Price>
         )}
         <S.Price>{formatPrice(promotionalPrice || price)}</S.Price>
-        <Button icon={<East />} size="small">
-          Ver
-        </Button>
+        <Link href={`service/${slug}`} passHref>
+          <Button icon={<East />} size="small">
+            Ver Anúncio
+          </Button>
+        </Link>
       </S.BuyBox>
     </S.Content>
   </S.Wrapper>

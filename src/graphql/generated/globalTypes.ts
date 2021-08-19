@@ -29,6 +29,23 @@ export interface InputID {
   id: string;
 }
 
+export interface ServiceInput {
+  name: string;
+  short_description?: string | null;
+  description?: string | null;
+  price?: number | null;
+  slug?: string | null;
+  cover?: string | null;
+  gallery?: (string | null)[] | null;
+  categories?: (string | null)[] | null;
+  address?: string | null;
+  released_at?: any | null;
+  user?: string | null;
+  contact?: string | null;
+  created_by?: string | null;
+  updated_by?: string | null;
+}
+
 export interface UsersPermissionsRegisterInput {
   username: string;
   email: string;
@@ -37,6 +54,10 @@ export interface UsersPermissionsRegisterInput {
 
 export interface createContactInput {
   data?: ContactInput | null;
+}
+
+export interface createServiceInput {
+  data?: ServiceInput | null;
 }
 
 export interface editContactInput {

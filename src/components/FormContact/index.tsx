@@ -9,7 +9,7 @@ export type FormContactProps = {
   whatsapp?: string
 }
 
-const FormProfile = ({ whatsapp }: FormContactProps) => (
+const FormContact = ({ whatsapp }: FormContactProps) => (
   <>
     <Heading lineBottom color="black" size="small">
       Meu Contato
@@ -29,4 +29,4 @@ const FormProfile = ({ whatsapp }: FormContactProps) => (
   </>
 )
 
-export default FormProfile
+export default FormContact

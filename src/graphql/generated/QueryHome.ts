@@ -41,11 +41,6 @@ export interface QueryHome_newServices_cover {
   url: string;
 }
 
-export interface QueryHome_newServices_contact {
-  __typename: "Contact";
-  whatsapp: string | null;
-}
-
 export interface QueryHome_newServices {
   __typename: "Service";
   id: string;
@@ -53,17 +48,12 @@ export interface QueryHome_newServices {
   slug: string | null;
   cover: QueryHome_newServices_cover | null;
   price: number | null;
-  contact: QueryHome_newServices_contact | null;
+  contact: string | null;
 }
 
 export interface QueryHome_otherServices_cover {
   __typename: "UploadFile";
   url: string;
-}
-
-export interface QueryHome_otherServices_contact {
-  __typename: "Contact";
-  whatsapp: string | null;
 }
 
 export interface QueryHome_otherServices {
@@ -73,7 +63,7 @@ export interface QueryHome_otherServices {
   slug: string | null;
   cover: QueryHome_otherServices_cover | null;
   price: number | null;
-  contact: QueryHome_otherServices_contact | null;
+  contact: string | null;
 }
 
 export interface QueryHome {

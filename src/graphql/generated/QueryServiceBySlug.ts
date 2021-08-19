@@ -18,11 +18,6 @@ export interface QueryServiceBySlug_services_cover {
   src: string;
 }
 
-export interface QueryServiceBySlug_services_contact {
-  __typename: "Contact";
-  whatsapp: string | null;
-}
-
 export interface QueryServiceBySlug_services_categories {
   __typename: "Category";
   name: string;
@@ -37,7 +32,7 @@ export interface QueryServiceBySlug_services {
   price: number | null;
   gallery: QueryServiceBySlug_services_gallery[];
   cover: QueryServiceBySlug_services_cover | null;
-  contact: QueryServiceBySlug_services_contact | null;
+  contact: string | null;
   categories: QueryServiceBySlug_services_categories[];
 }
 

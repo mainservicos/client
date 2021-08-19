@@ -60,7 +60,7 @@ describe('validations', () => {
       }
 
       expect(signUpValidate(values).confirm_password).toMatchInlineSnapshot(
-        `"confirm password does not match with password"`
+        `"Repita a senha!"`
       )
     })
   })
