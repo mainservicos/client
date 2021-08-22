@@ -39,9 +39,10 @@ export interface ServiceInput {
   gallery?: (string | null)[] | null;
   categories?: (string | null)[] | null;
   address?: string | null;
-  released_at?: any | null;
+  released_at: any;
   user?: string | null;
   contact?: string | null;
+  published_at?: any | null;
   created_by?: string | null;
   updated_by?: string | null;
 }

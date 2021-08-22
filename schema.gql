@@ -559,9 +559,10 @@ type Service {
   slug: String
   cover: UploadFile
   address: Address
-  released_at: Date
+  released_at: Date!
   user: UsersPermissionsUser
   contact: String
+  published_at: DateTime
   gallery(sort: String, limit: Int, start: Int, where: JSON): [UploadFile!]!
   categories(sort: String, limit: Int, start: Int, where: JSON): [Category!]!
 }
@@ -611,6 +612,7 @@ type ServiceGroupBy {
   released_at: [ServiceConnectionReleased_at]
   user: [ServiceConnectionUser]
   contact: [ServiceConnectionContact]
+  published_at: [ServiceConnectionPublished_at]
 }
 
 type ServiceConnectionId {
@@ -678,6 +680,11 @@ type ServiceConnectionContact {
   connection: ServiceConnection
 }
 
+type ServiceConnectionPublished_at {
+  key: DateTime
+  connection: ServiceConnection
+}
+
 input ServiceInput {
   name: String!
   short_description: String
@@ -688,9 +695,10 @@ input ServiceInput {
   gallery: [ID]
   categories: [ID]
   address: ID
-  released_at: Date
+  released_at: Date!
   user: ID
   contact: String
+  published_at: DateTime
   created_by: ID
   updated_by: ID
 }
@@ -708,6 +716,7 @@ input editServiceInput {
   released_at: Date
   user: ID
   contact: String
+  published_at: DateTime
   created_by: ID
   updated_by: ID
 }
@@ -1290,7 +1299,7 @@ input editComponentUserSocialLinkInput {
   title: ENUM_COMPONENTUSERSOCIALLINKS_TITLE
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Address | AddressConnection | AddressAggregator | AddressGroupBy | AddressConnectionId | AddressConnectionCreated_at | AddressConnectionUpdated_at | AddressConnectionName | AddressConnectionLogradouro | AddressConnectionCep | AddressConnectionBairro | AddressConnectionCidade | AddressConnectionUf | AddressConnectionNumero | AddressConnectionPublished_at | createAddressPayload | updateAddressPayload | deleteAddressPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionRibbon | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Contact | ContactConnection | ContactAggregator | ContactGroupBy | ContactConnectionId | ContactConnectionCreated_at | ContactConnectionUpdated_at | ContactConnectionFacebook | ContactConnectionWhatsapp | ContactConnectionUser | createContactPayload | updateContactPayload | deleteContactPayload | Service | ServiceConnection | ServiceAggregator | ServiceAggregatorSum | ServiceAggregatorAvg | ServiceAggregatorMin | ServiceAggregatorMax | ServiceGroupBy | ServiceConnectionId | ServiceConnectionCreated_at | ServiceConnectionUpdated_at | ServiceConnectionName | ServiceConnectionShort_description | ServiceConnectionDescription | ServiceConnectionPrice | ServiceConnectionSlug | ServiceConnectionCover | ServiceConnectionAddress | ServiceConnectionReleased_at | ServiceConnectionUser | ServiceConnectionContact | createServicePayload | updateServicePayload | deleteServicePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionPhoto | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionDescription | createUserPayload | updateUserPayload | deleteUserPayload | ComponentUserButton | ComponentUserRibbon | ComponentUserSocialLinks
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Address | AddressConnection | AddressAggregator | AddressGroupBy | AddressConnectionId | AddressConnectionCreated_at | AddressConnectionUpdated_at | AddressConnectionName | AddressConnectionLogradouro | AddressConnectionCep | AddressConnectionBairro | AddressConnectionCidade | AddressConnectionUf | AddressConnectionNumero | AddressConnectionPublished_at | createAddressPayload | updateAddressPayload | deleteAddressPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionRibbon | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Contact | ContactConnection | ContactAggregator | ContactGroupBy | ContactConnectionId | ContactConnectionCreated_at | ContactConnectionUpdated_at | ContactConnectionFacebook | ContactConnectionWhatsapp | ContactConnectionUser | createContactPayload | updateContactPayload | deleteContactPayload | Service | ServiceConnection | ServiceAggregator | ServiceAggregatorSum | ServiceAggregatorAvg | ServiceAggregatorMin | ServiceAggregatorMax | ServiceGroupBy | ServiceConnectionId | ServiceConnectionCreated_at | ServiceConnectionUpdated_at | ServiceConnectionName | ServiceConnectionShort_description | ServiceConnectionDescription | ServiceConnectionPrice | ServiceConnectionSlug | ServiceConnectionCover | ServiceConnectionAddress | ServiceConnectionReleased_at | ServiceConnectionUser | ServiceConnectionContact | ServiceConnectionPublished_at | createServicePayload | updateServicePayload | deleteServicePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionPhoto | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionDescription | createUserPayload | updateUserPayload | deleteUserPayload | ComponentUserButton | ComponentUserRibbon | ComponentUserSocialLinks
 
 input InputID {
   id: ID!

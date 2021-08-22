@@ -13,11 +13,11 @@ import { useMutation } from '@apollo/client'
 import slugify from 'react-slugify'
 import { useRouter } from 'next/router'
 import { v4 as uuidv4 } from 'uuid'
-
 const TODAY = new Date().toISOString().slice(0, 10)
 
 import TextArea from 'components/TextArea'
 import { FormWrapper, FormLoading, FormError } from 'components/Form'
+// import Upload from 'components/Upload'
 
 export type FormNewServiceProps = {
   user: string
@@ -29,7 +29,7 @@ const FormNewService = ({ user }: FormNewServiceProps) => {
 
   const [values, setValues] = useState<ServiceInput>({
     name: ' Sem título ',
-    cover: '3',
+    cover: '16',
     description: 'Sem descrição',
     released_at: TODAY,
     price: Number(0),
@@ -73,7 +73,7 @@ const FormNewService = ({ user }: FormNewServiceProps) => {
               prefix: uuidv4().slice(0, 4)
             }),
             contact: values.contact,
-            cover: '1',
+            cover: '16',
             user: user
           }
         }

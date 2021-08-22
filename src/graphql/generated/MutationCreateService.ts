@@ -20,7 +20,7 @@ export interface MutationCreateService_createService_service {
   description: string | null;
   price: number | null;
   cover: MutationCreateService_createService_service_cover | null;
-  released_at: any | null;
+  released_at: any;
   contact: string | null;
 }
 

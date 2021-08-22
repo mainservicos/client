@@ -38,7 +38,7 @@ const ServiceInfo = ({
       <Button
         icon={<Whatsapp />}
         size="large"
-        href={`https://api.whatsapp.com/send?phone=55${contact.whatsapp}&text=Ol%C3%A1%2C%20vim%20pela%20plataforma%20Ma%C3%ACn.`}
+        href={`https://api.whatsapp.com/send?phone=55${contact}&text=Ol%C3%A1%2C%20vim%20pela%20plataforma%20Ma%C3%ACn.`}
         minimal
         as="a"
         target="_blank"

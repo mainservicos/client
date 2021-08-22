@@ -13,7 +13,7 @@ const Footer = () => (
           Contato
         </Heading>
 
-        <a href="mailto:sac@wongames.com">sac@mainservicos.com.br</a>
+        <a href="mailto:mainservicos@gmail.com">mainservicos@gmail.com</a>
       </S.Column>
 
       <S.Column>
@@ -60,10 +60,7 @@ const Footer = () => (
 
         <nav aria-labelledby="footer resources">
           <Link href="/">
-            <a>Home</a>
-          </Link>
-          <Link href="/games">
-            <a>Store</a>
+            <a>Início</a>
           </Link>
           <Link href="/search">
             <a>Buscar</a>
@@ -73,11 +70,9 @@ const Footer = () => (
 
       <S.Column aria-labelledby="footer-contact">
         <Heading color="black" lineColor="secondary" lineBottom size="small">
-          Localização
+          Termos
         </Heading>
         <span>Lorem ipsum dolor sit.</span>
-        <span>Lorem Ipsum</span>
-        <span>Lorem, ipsum dolor.</span>
       </S.Column>
     </S.Content>
 
